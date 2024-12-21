@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const slugify = require('slugify');
+const slugify = require("slugify");
 
 const productSchema = mongoose.Schema({
   name: {
@@ -8,6 +8,26 @@ const productSchema = mongoose.Schema({
     unique: true,
   },
   description: mongoose.SchemaTypes.Mixed,
+  type: {
+    type: String,
+    enum: ["simple", "variable"],
+    required: true,
+    default: "simple",
+  },
+  regularPrice: {type: Number, min: 0, default: 0, required: true},
+  salePrice: {type: Number, min: 0, default: 0},
+  SKU: String,
+  stockManagement: { type: Boolean, default: false },
+  // if stockManagement is true
+  quantity: { type: Number, min: 0, default: 0, required: true },
+  // if stockManagement is false
+  stockStatus: {
+    type: String,
+    enum: ["In stock", "Out of stock"],
+    default: "In stock",
+    required: true,
+  },
+  attributes: [{ name: String, values: [String] }],
   collections: [String],
   imagesURL: [String],
   backgroundImageURL: String,
@@ -28,6 +48,10 @@ productSchema.pre("findOneAndUpdate", function (next) {
   if (name) this.set({ slug: slugify(name, { lower: true }) });
   next();
 });
+
+// productSchema.statics.generateVariations = function (next) {
+
+// }
 
 const Product = mongoose.model("Product", productSchema);
 
