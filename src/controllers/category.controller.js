@@ -38,6 +38,8 @@ exports.updateCategory = async (req, res, next) => {
       }
     );
 
+    if (!updatedCategory) return new AppError("Category not found", 404);
+
     res
       .status(200)
       .json({ status: "SUCCESS", data: { category: updatedCategory } });
@@ -46,3 +48,14 @@ exports.updateCategory = async (req, res, next) => {
   }
 };
 
+exports.deleteCategory = async (req, res, next) => {
+  try {
+    const category = await Category.findByIdAndDelete(req.params.id);
+
+    if (!category) return new AppError("Category not found", 404);
+
+    res.status(200).json({ status: "SUCCESS", data: { category } });
+  } catch (err) {
+    next(err);
+  }
+};
