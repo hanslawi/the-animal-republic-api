@@ -4,7 +4,8 @@ const morgan = require("morgan");
 
 // import router
 const categoryRouter = require("./src/routes/category.routes");
-const subcategoryRouter = require('./src/routes/subcategory.routes')
+const subcategoryRouter = require("./src/routes/subcategory.routes");
+const productRouter = require("./src/routes/product.routes");
 
 // init express
 const app = express();
@@ -17,11 +18,11 @@ app.use(morgan("dev"));
 
 // routers
 app.use("/api/categories", categoryRouter);
-app.use("/api/subcategories", subcategoryRouter)
+app.use("/api/subcategories", subcategoryRouter);
+app.use("api/products", productRouter);
 
 // error-handling middleware
 app.use((err, req, res, next) => {
-
   if (err.status)
     res.status(err.status).json({ status: "ERROR", message: err.message });
   else res.status(500).json({ status: "ERROR", message: err.message });
