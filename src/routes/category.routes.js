@@ -15,6 +15,6 @@ router.get("/:categoryId", categoryController.getCategory);
 router.patch("/:categoryId", categoryController.updateCategory);
 router.delete("/:categoryId", categoryController.deleteCategory);
 
-router.use("/:categoryId", subcategoryRouter);
+router.use("/:categoryId/subcategories", subcategoryRouter);
 
 module.exports = router;
