@@ -9,6 +9,7 @@ exports.getAllCategories = async (req, res, next) => {
     // send JSON response containing CATEGORIES
     res.status(200).json({
       status: "SUCCESS",
+      results: categories.length,
       data: categories,
     });
   } catch (err) {

@@ -12,7 +12,11 @@ exports.getAllSubcategories = async (req, res, next) => {
     const subcategories = await SubCategory.find(filter);
 
     // send JSON response with SUBCATEGORIES
-    res.status(200).json({ status: 200, data: subcategories });
+    res.status(200).json({
+      status: 200,
+      results: subcategories.length,
+      data: subcategories,
+    });
   } catch (err) {
     next(err);
   }
