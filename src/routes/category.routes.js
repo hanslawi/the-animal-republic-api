@@ -1,19 +1,20 @@
 // import libraries
 const express = require("express");
 
+// import router
+const subcategoryRouter = require("./subcategory.routes");
+
 // import controllers
 const categoryController = require("../controllers/category.controller");
 
-const categoryRouter = express.Router();
+const router = express.Router();
 
-categoryRouter.get("/", categoryController.getAllCategories);
-categoryRouter.post("/", categoryController.createCategory);
-categoryRouter.get("/:categoryId", categoryController.getCategory);
-categoryRouter.patch("/:categoryId", categoryController.updateCategory);
-categoryRouter.delete("/:categoryId", categoryController.deleteCategory);
+router.get("/", categoryController.getAllCategories);
+router.post("/", categoryController.createCategory);
+router.get("/:categoryId", categoryController.getCategory);
+router.patch("/:categoryId", categoryController.updateCategory);
+router.delete("/:categoryId", categoryController.deleteCategory);
 
-categoryRouter.get('/:categoryId/subcategories', categoryController.getAllSubcategories);
-categoryRouter.post('/:categoryId/subcategories', categoryController.createSubcategory);
-// categoryRouter.get('/:id/subcategories/:id')
+router.use("/:categoryId", subcategoryRouter);
 
-module.exports = categoryRouter;
+module.exports = router;

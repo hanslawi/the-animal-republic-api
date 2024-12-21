@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 // import router
 const categoryRouter = require("./src/routes/category.routes");
+const subcategoryRouter = require('./src/routes/subcategory.routes')
 
 // init express
 const app = express();
@@ -16,6 +17,7 @@ app.use(morgan("dev"));
 
 // routers
 app.use("/api/categories", categoryRouter);
+app.use("/api/subcategories", subcategoryRouter)
 
 // error-handling middleware
 app.use((err, req, res, next) => {
