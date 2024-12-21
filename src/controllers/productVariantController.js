@@ -11,3 +11,17 @@ exports.getAllProductVariants = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.createProductVariant = async (req, res, next) => {
+  try {
+    // create PRODUCT VARIANT
+    const productVariant = await ProductVariant.create(req.body);
+
+    // send JSON response with added PRODUCT VARIANT
+    res
+      .status(201)
+      .json({ status: "SUCCESS", data: { productvariant: productVariant } });
+  } catch (err) {
+    next(err);
+  }
+};

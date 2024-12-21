@@ -7,5 +7,6 @@ const productVariantController = require("../controllers/productVariantControlle
 const router = express.Router();
 
 router.get("/", productVariantController.getAllProductVariants);
+router.post('/', productVariantController.createProductVariant);
 
 module.exports = router;
