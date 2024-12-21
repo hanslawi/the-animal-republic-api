@@ -64,9 +64,27 @@ exports.updateSubcategory = async (req, res, next) => {
     if (!updatedSubcategory)
       return next(new AppError("Subcategory not found", 404));
 
+    // send JSON response with updated subcategory
     res
       .status(201)
       .json({ status: "SUCCESS", data: { category: updatedSubcategory } });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteSubcategory = async (req, res, next) => {
+  try {
+    // delete SUBCATEGORY by Id
+    const subcategory = await SubCategory.findByIdAndDelete(
+      req.params.subcategoryId
+    );
+
+    // if SUBCATEGORY with that ID is not found, throw AppError
+    if (!subcategory) return next(new AppError("Subcategory not found", 404));
+
+    // send JSON response with deleted subcategory
+    res.status(200).json({ status: "SUCCESS", data: subcategory });
   } catch (err) {
     next(err);
   }
