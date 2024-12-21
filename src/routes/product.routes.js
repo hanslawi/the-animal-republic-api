@@ -8,6 +8,6 @@ const router = express.Router({ mergeParams: true });
 
 router.get("/", productController.getAllProducts);
 router.post("/", productController.createProduct);
-// router.get('/:productId', productController.getProduct);
+router.get('/:productId', productController.getProduct);
 
 module.exports = router;

@@ -1,3 +1,6 @@
+// import library
+const AppError = require("../utils/appError");
+
 // import model
 const Product = require("../models/product.model");
 
@@ -30,6 +33,24 @@ exports.createProduct = async (req, res, next) => {
 
     // send JSON response with product
     res.status(201).json({
+      status: "SUCCESS",
+      data: product,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getProduct = async (req, res, next) => {
+  try {
+    // get PRODUCT by ID
+    const product = await Product.findById(req.params.productId);
+
+    // if PRODUCT with that ID is not found, throw AppError
+    if (!product) return next(new AppError("Product not found", 404));
+
+    // send JSON response with product
+    res.status(200).json({
       status: "SUCCESS",
       data: product,
     });
