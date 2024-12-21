@@ -8,5 +8,6 @@ const router = express.Router({ mergeParams: true });
 
 router.get("/", productVariantController.getAllProductVariants);
 router.post("/", productVariantController.createProductVariant);
+router.get('/:productVariantId', productVariantController.getProductVariant);
 
 module.exports = router;
