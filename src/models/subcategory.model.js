@@ -7,8 +7,7 @@ const subcategorySchema = new mongoose.Schema({
     unique: true,
   },
   description: String,
-  slug: String,
-  category: 
+  slug: String
 });
 
 const SubCategory = mongoose.model("SubCategory", subcategorySchema);
