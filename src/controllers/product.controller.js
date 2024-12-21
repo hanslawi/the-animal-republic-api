@@ -22,3 +22,18 @@ exports.getAllProducts = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.createProduct = async (req, res, next) => {
+  try {
+    // create PRODUCT
+    const product = await Product.create(req.body);
+
+    // send JSON response with product
+    res.status(201).json({
+      status: "SUCCESS",
+      data: product,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
