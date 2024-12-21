@@ -1,0 +1,13 @@
+const ProductVariant = require("../models/productVariant.model");
+
+exports.getAllProductVariants = async (req, res, next) => {
+  try {
+    // get all PRODUCT VARIANTS
+    const productVariants = await ProductVariant.find();
+
+    // send JSON response with PRODUCT VARIANTS
+    res.status(200).json({ status: "SUCCESS", data: productVariants });
+  } catch (err) {
+    next(err);
+  }
+};
