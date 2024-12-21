@@ -6,5 +6,6 @@ const router = express.Router({ mergeParams: true });
 router.get("/", subcategoryController.getAllSubcategories);
 router.post("/", subcategoryController.createSubcategory);
 router.get("/:subcategoryId", subcategoryController.getSubcategory);
+router.patch("/:subcategoryId", subcategoryController.updateSubcategory);
 
 module.exports = router;

@@ -47,3 +47,27 @@ exports.getSubcategory = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateSubcategory = async (req, res, next) => {
+  try {
+    // update SUBCATEGORY by Id
+    const updatedSubcategory = await SubCategory.findByIdAndUpdate(
+      req.params.subcategoryId,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    // if SUBCATEGORY with that ID is not found, throw AppError
+    if (!updatedSubcategory)
+      return next(new AppError("Subcategory not found", 404));
+
+    res
+      .status(201)
+      .json({ status: "SUCCESS", data: { category: updatedSubcategory } });
+  } catch (err) {
+    next(err);
+  }
+};

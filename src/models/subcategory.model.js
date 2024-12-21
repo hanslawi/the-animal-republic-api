@@ -13,14 +13,13 @@ const subcategorySchema = new mongoose.Schema({
 
 // slugify name eg. Premium Hoodies = premium-hoodies
 subcategorySchema.pre("save", function (next) {
-  this.slug = slugify(this.name, { lower: true });
-  console.log(this.slug);
+  if (this.name) this.slug = slugify(this.name, { lower: true });
   next();
 });
 
 subcategorySchema.pre("findOneAndUpdate", function (next) {
   const { name } = this.getUpdate();
-  this.set({ slug: slugify(name, { lower: true }) });
+  if (name) this.set({ slug: slugify(name, { lower: true }) });
   next();
 });
 
