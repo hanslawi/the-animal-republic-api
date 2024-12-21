@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
     unique: true,
   },
   description: mongoose.SchemaTypes.Mixed,
-  collection: [String],
+  collections: [String],
   imagesURL: [String],
   backgroundImageURL: String,
   tags: [String],
