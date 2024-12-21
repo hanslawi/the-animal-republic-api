@@ -82,3 +82,18 @@ exports.updateProduct = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.deleteProduct = async (req, res, next) => {
+  try {
+    // find PRODUCT by ID and delete it
+    const product = await Product.findByIdAndDelete(req.params.productId);
+
+    // if PRODUCT is not found, throw AppError to next middleware
+    if (!product) return next(new AppError("Product not found", 404));
+
+    // send JSON response with deleted PRODUCT
+    res.status(200).json({ status: "SUCCESS", data: product });
+  } catch (err) {
+    next(err);
+  }
+};

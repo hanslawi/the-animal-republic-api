@@ -8,7 +8,8 @@ const router = express.Router({ mergeParams: true });
 
 router.get("/", productController.getAllProducts);
 router.post("/", productController.createProduct);
-router.get('/:productId', productController.getProduct);
-router.patch('/:productId', productController.updateProduct);
+router.get("/:productId", productController.getProduct);
+router.patch("/:productId", productController.updateProduct);
+router.delete("/:productId", productController.deleteProduct);
 
 module.exports = router;
