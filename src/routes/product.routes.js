@@ -9,5 +9,6 @@ const router = express.Router({ mergeParams: true });
 router.get("/", productController.getAllProducts);
 router.post("/", productController.createProduct);
 router.get('/:productId', productController.getProduct);
+router.patch('/:productId', productController.updateProduct);
 
 module.exports = router;

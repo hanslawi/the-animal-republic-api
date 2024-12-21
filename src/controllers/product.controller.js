@@ -58,3 +58,27 @@ exports.getProduct = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateProduct = async (req, res, next) => {
+  try {
+    // find PRODUCT by ID and update
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.productId,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    // if PRODUCT is not found, throw AppError to next middleware
+    if (!updatedProduct) return next(new AppError("Product not found", 404));
+
+    // send JSON response with updated PRODUCT
+    res
+      .status(200)
+      .json({ status: "SUCCESS", data: { product: updatedProduct } });
+  } catch (err) {
+    next(err);
+  }
+};
