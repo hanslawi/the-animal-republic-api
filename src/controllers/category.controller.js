@@ -29,7 +29,14 @@ exports.createCategory = async (req, res, next) => {
 
 exports.getCategory = async (req, res, next) => {
   try {
-  } catch (err) {}
+    const category = await Category.findById(req.params.id);
+
+    if (!category) return next(new AppError("Category not found", 404));
+
+    res.status(200).json({ status: "SUCCESS", data: { category } });
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.updateCategory = async (req, res, next) => {
