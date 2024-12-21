@@ -35,7 +35,7 @@ exports.createCategory = async (req, res, next) => {
 exports.getCategory = async (req, res, next) => {
   try {
     // get CATEGORY by ID
-    const category = await Category.findById(req.params.id);
+    const category = await Category.findById(req.params.categoryId);
 
     // if CATEGORY is not found, throw AppError
     if (!category) return next(new AppError("Category not found", 404));
@@ -50,7 +50,7 @@ exports.updateCategory = async (req, res, next) => {
   try {
     // update CATEGORY by ID
     const updatedCategory = await Category.findByIdAndUpdate(
-      req.params.id,
+      req.params.categoryId,
       req.body,
       {
         new: true,
@@ -73,7 +73,7 @@ exports.updateCategory = async (req, res, next) => {
 exports.deleteCategory = async (req, res, next) => {
   try {
     // delete CATEGORY by ID
-    const category = await Category.findByIdAndDelete(req.params.id);
+    const category = await Category.findByIdAndDelete(req.params.categoryId);
 
     // if CATEGORY with that ID is not found, throw AppError
     if (!category) {
@@ -90,11 +90,26 @@ exports.deleteCategory = async (req, res, next) => {
 exports.getAllSubcategories = async (req, res, next) => {
   try {
     // get all SUBCATEGORIES with CATEGORY ID
-    const categoryId = req.params.id;
+    const categoryId = req.params.categoryId;
     const subcategories = await SubCategory.find({ category: categoryId });
 
     // send JSON response with SUBCATEGORIES
     res.status(200).json({ status: 200, data: subcategories });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.createSubcategory = async (req, res, next) => {
+  try {
+    // create SUBCATEGORY
+    const subcategory = await SubCategory.create({
+      ...req.body,
+      category: req.params.categoryId,
+    });
+
+    // send JSON response (200) with subcategory
+    res.status(200).json({ status: "SUCCESS", data: subcategory });
   } catch (err) {
     next(err);
   }
