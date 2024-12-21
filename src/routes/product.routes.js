@@ -4,9 +4,9 @@ const express = require("express");
 // import controller
 const productController = require("../controllers/product.controller");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router.get("/", productController.getAllProducts);
-// router.post("/", productController.createProduct);
+router.post("/", productController.createProduct);
 
 module.exports = router;
