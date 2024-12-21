@@ -18,20 +18,20 @@ exports.getAllSubcategories = async (req, res, next) => {
   }
 };
 
-//   exports.createSubcategory = async (req, res, next) => {
-//     try {
-//       // create SUBCATEGORY
-//       const subcategory = await SubCategory.create({
-//         ...req.body,
-//         category: req.params.categoryId,
-//       });
+exports.createSubcategory = async (req, res, next) => {
+  try {
+    // create SUBCATEGORY
+    const subcategory = await SubCategory.create({
+      ...req.body,
+      category: req.params.categoryId,
+    });
 
-//       // send JSON response (200) with subcategory
-//       res.status(200).json({ status: "SUCCESS", data: subcategory });
-//     } catch (err) {
-//       next(err);
-//     }
-//   };
+    // send JSON response (200) with subcategory
+    res.status(200).json({ status: "SUCCESS", data: subcategory });
+  } catch (err) {
+    next(err);
+  }
+};
 
 //   exports.getSubcategory = async (req, res, next) => {
 //       try {

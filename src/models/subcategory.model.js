@@ -8,7 +8,7 @@ const subcategorySchema = new mongoose.Schema({
   },
   description: String,
   slug: String,
-  category: { type: mongoose.Schema.ObjectId, ref: "Category" },
+  category: { type: mongoose.Schema.ObjectId, ref: "Category", required: true },
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies
