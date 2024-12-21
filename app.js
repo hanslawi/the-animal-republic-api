@@ -18,7 +18,7 @@ app.use(morgan("dev"));
 app.use("/api/categories", categoryRouter);
 
 // error-handling middleware
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.status(500).json({ status: "ERROR", message: err.message });
 });
 
