@@ -7,7 +7,8 @@ const subcategorySchema = new mongoose.Schema({
     unique: true,
   },
   description: String,
-  slug: String
+  slug: String,
+  category: { type: mongoose.Schema.ObjectId, ref: "Category" },
 });
 
 const SubCategory = mongoose.model("SubCategory", subcategorySchema);
