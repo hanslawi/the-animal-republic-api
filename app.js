@@ -19,8 +19,9 @@ app.use("/api/categories", categoryRouter);
 
 // error-handling middleware
 app.use((err, req, res, next) => {
-  if (err.statusCode)
-    res.status(err.statusCode).json({ status: "ERROR", message: err.message });
+
+  if (err.status)
+    res.status(err.status).json({ status: "ERROR", message: err.message });
   else res.status(500).json({ status: "ERROR", message: err.message });
 });
 
