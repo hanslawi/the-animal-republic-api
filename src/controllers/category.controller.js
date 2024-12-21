@@ -1,4 +1,5 @@
 const Category = require("../models/category.model");
+const AppError = require("../utils/appError");
 
 exports.getAllCategories = async (req, res, next) => {
   try {
@@ -44,3 +45,4 @@ exports.updateCategory = async (req, res, next) => {
     next(err);
   }
 };
+

@@ -7,7 +7,8 @@ const categoryController = require("../controllers/category.controller");
 const categoryRouter = express.Router();
 
 categoryRouter.get("/", categoryController.getAllCategories);
-categoryRouter.post('/', categoryController.createCategory);
-categoryRouter.patch('/:id', categoryController.updateCategory)
+categoryRouter.post("/", categoryController.createCategory);
+categoryRouter.patch("/:id", categoryController.updateCategory);
+categoryRouter.delete("/:id", categoryController.deleteCategory);
 
 module.exports = categoryRouter;
