@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 // routers
 app.use("/api/categories", categoryRouter);
 app.use("/api/subcategories", subcategoryRouter);
-app.use("api/products", productRouter);
+app.use("/api/products", productRouter);
 
 // error-handling middleware
 app.use((err, req, res, next) => {

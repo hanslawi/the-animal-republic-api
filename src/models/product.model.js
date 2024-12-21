@@ -12,6 +12,6 @@ const productSchema = mongoose.Schema({
   tags: [String],
 });
 
-const Product = mongoose.Model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
