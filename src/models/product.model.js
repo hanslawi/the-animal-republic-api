@@ -10,6 +10,8 @@ const productSchema = mongoose.Schema({
   imagesURL: [String],
   backgroundImageURL: String,
   tags: [String],
+  category: { type: mongoose.Schema.ObjectId, ref: "Category" },
+  subcategory: { type: mongoose.Schema.ObjectId, ref: "SubCategory" },
 });
 
 const Product = mongoose.model("Product", productSchema);

@@ -13,3 +13,4 @@ exports.getAllProducts = async (req, res, next) => {
     next(err);
   }
 };
+
