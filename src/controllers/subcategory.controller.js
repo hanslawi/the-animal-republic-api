@@ -33,10 +33,17 @@ exports.createSubcategory = async (req, res, next) => {
   }
 };
 
-//   exports.getSubcategory = async (req, res, next) => {
-//       try {
-//           // get SUBCATEGORY by Id
-//       } catch (err) {
-//           next(err);
-//       }
-//   }
+exports.getSubcategory = async (req, res, next) => {
+  try {
+    // get SUBCATEGORY by Id
+    const subcategory = await SubCategory.findById(req.params.subcategoryId);
+
+    // if SUBCATEGORY with that ID is not found, throw AppError
+    if (!subcategory) return next(new AppError("Subcategory not found", 404));
+
+    // send JSON response with subcategory
+    res.status(200).json({ status: "SUCCESS", data: subcategory });
+  } catch (err) {
+    next(err);
+  }
+};
