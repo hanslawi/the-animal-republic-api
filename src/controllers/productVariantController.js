@@ -73,11 +73,32 @@ exports.updateProductVariant = async (req, res, next) => {
       return next(new AppError("Product variant not found", 404));
 
     // send JSON response with updated PRODUCT VARIANT
+    res.status(201).json({
+      status: "SUCCESS",
+      data: { productvariant: updatedProductVariant },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteProductVariant = async (req, res, next) => {
+  try {
+    // get PRODUCT VARIANT by ID and delete
+    const deletedProductVariant = await ProductVariant.findByIdAndDelete(
+      req.params.productVariantId
+    );
+
+    // if PRODUCT VARIANT is not found, throw AppError to next middleware
+    if (!deletedProductVariant)
+      return next(new AppError("Product variant not found", 404));
+
+    // send JSON response with deleted PRODUCT VARIANT
     res
-      .status(201)
+      .status(200)
       .json({
         status: "SUCCESS",
-        data: { productvariant: updatedProductVariant },
+        data: { productvariant: deletedProductVariant },
       });
   } catch (err) {
     next(err);
