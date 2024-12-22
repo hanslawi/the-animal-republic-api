@@ -15,7 +15,13 @@ exports.getAllProductVariants = async (req, res, next) => {
     const productVariants = await ProductVariant.find(filter);
 
     // send JSON response with PRODUCT VARIANTS
-    res.status(200).json({ status: "SUCCESS", data: productVariants });
+    res
+      .status(200)
+      .json({
+        status: "SUCCESS",
+        results: productVariants.length,
+        data: productVariants,
+      });
   } catch (err) {
     next(err);
   }
@@ -94,12 +100,10 @@ exports.deleteProductVariant = async (req, res, next) => {
       return next(new AppError("Product variant not found", 404));
 
     // send JSON response with deleted PRODUCT VARIANT
-    res
-      .status(200)
-      .json({
-        status: "SUCCESS",
-        data: { productvariant: deletedProductVariant },
-      });
+    res.status(200).json({
+      status: "SUCCESS",
+      data: { productvariant: deletedProductVariant },
+    });
   } catch (err) {
     next(err);
   }
