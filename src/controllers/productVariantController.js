@@ -1,5 +1,5 @@
 // import util
-const AppError = require('../utils/appError');
+const AppError = require("../utils/appError");
 
 // import model
 const ProductVariant = require("../models/productVariant.model");
@@ -51,6 +51,34 @@ exports.getProductVariant = async (req, res, next) => {
       status: "SUCCESS",
       data: { productvariant: productVariant },
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.updateProductVariant = async (req, res, next) => {
+  try {
+    // get PRODUCT VARIANT by ID and update
+    const updatedProductVariant = await ProductVariant.findByIdAndUpdate(
+      req.params.productVariantId,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    // if PRODUCT VARIANT is not found, throw AppError to next middleware
+    if (!updatedProductVariant)
+      return next(new AppError("Product variant not found", 404));
+
+    // send JSON response with updated PRODUCT VARIANT
+    res
+      .status(201)
+      .json({
+        status: "SUCCESS",
+        data: { productvariant: updatedProductVariant },
+      });
   } catch (err) {
     next(err);
   }
