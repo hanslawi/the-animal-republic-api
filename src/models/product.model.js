@@ -16,7 +16,7 @@ const productSchema = mongoose.Schema({
   },
   regularPrice: { type: Number, min: 0 }, // product.type = simple
   salePrice: { type: Number, min: 0 }, // product.type = simple
-  SKU: String,
+  SKU: String, // product.type = simple
   attributes: [{ name: String, values: [String] }],
   collections: [String],
   images: [{ type: { altText: String, fileURL: String } }],
