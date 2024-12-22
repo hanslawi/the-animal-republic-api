@@ -14,25 +14,16 @@ const productSchema = mongoose.Schema({
     default: "simple",
     required: true,
   },
-  regularPrice: {type: Number, min: 0, default: 0, required: true},
-  salePrice: {type: Number, min: 0, default: 0, required: true},
+  regularPrice: { type: Number, min: 0 }, // product.type = simple
+  salePrice: { type: Number, min: 0 }, // product.type = simple
   SKU: String,
-  stockManagement: { type: Boolean, default: false, required: true},
-  // if stockManagement is true
-  quantity: { type: Number, min: 0, default: 0, required: true },
-  // if stockManagement is false
-  stockStatus: {
-    type: String,
-    enum: ["In stock", "Out of stock"],
-    default: "In stock",
-    required: true,
-  },
   attributes: [{ name: String, values: [String] }],
   collections: [String],
-  imagesURL: [String],
-  backgroundImageURL: String,
+  images: [{ type: { altText: String, fileURL: String } }],
+  backgroundImage: { type: { altText: String, fileURL: String } },
+  videoShowcase: { type: { altText: String, fileURL: String } },
   tags: [String],
-  slug: { type: String, unique: true, required: true},
+  slug: { type: String, unique: true, required: true },
   category: { type: mongoose.Schema.ObjectId, ref: "Category" },
   subcategory: { type: mongoose.Schema.ObjectId, ref: "SubCategory" },
 });
