@@ -97,3 +97,27 @@ exports.deleteProduct = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.generateProductVariants = async (req, res, next) => {
+  try {
+    // get PRODUCT by ID
+    const product = await Product.findById(req.params.productId).populate('subcategory');
+
+    // check if PRODUCT is found
+    if (!product) return next(new AppError("Product not found", 404));
+
+    // generate PRODUCT VARIANTS
+    const productVariants = await product._generateProductVariants();
+
+    // send JSON response with added PRODUCT VARIANTS
+    res
+      .status(200)
+      .json({
+        status: "SUCCESS",
+        results: productVariants.length,
+        data: { productvariants: productVariants },
+      });
+  } catch (err) {
+    next(err);
+  }
+};

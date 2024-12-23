@@ -15,6 +15,9 @@ router.get("/:productId", productController.getProduct);
 router.patch("/:productId", productController.updateProduct);
 router.delete("/:productId", productController.deleteProduct);
 
+// generate variants
+router.post("/:productId/generateproductvariants", productController.generateProductVariants);
+
 // nested route
 router.use("/:productId/productvariants", productVariantRouter);
 

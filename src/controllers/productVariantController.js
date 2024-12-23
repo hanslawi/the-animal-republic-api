@@ -15,13 +15,11 @@ exports.getAllProductVariants = async (req, res, next) => {
     const productVariants = await ProductVariant.find(filter);
 
     // send JSON response with PRODUCT VARIANTS
-    res
-      .status(200)
-      .json({
-        status: "SUCCESS",
-        results: productVariants.length,
-        data: productVariants,
-      });
+    res.status(200).json({
+      status: "SUCCESS",
+      results: productVariants.length,
+      data: productVariants,
+    });
   } catch (err) {
     next(err);
   }

@@ -25,9 +25,13 @@ app.use("/api/productvariants", productVariantRouter);
 
 // error-handling middleware
 app.use((err, req, res, next) => {
-  if (err.status)
-    res.status(err.status).json({ status: "ERROR", message: err.message });
-  else res.status(500).json({ status: "ERROR", message: err.message });
+  // PROD
+  //   if (err.status)
+  //     res.status(err.status).json({ status: "ERROR", message: err.message });
+  //   else res.status(500).json({ status: "ERROR", message: err.message });
+
+  // DEV
+  console.log(err);
 });
 
 module.exports = app;
