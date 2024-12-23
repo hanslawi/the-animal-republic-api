@@ -8,6 +8,7 @@ const categorySchema = new mongoose.Schema({
     unique: true,
   },
   description: String,
+  images: { type: [{ altText: String, fileURL: String }] },
   slug: String,
 });
 

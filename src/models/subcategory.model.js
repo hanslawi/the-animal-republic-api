@@ -7,6 +7,7 @@ const subcategorySchema = new mongoose.Schema({
     required: true,
   },
   description: String,
+  images: { type: [{ altText: String, fileURL: String }] },
   slug: String,
   category: { type: mongoose.Schema.ObjectId, ref: "Category", required: true },
 });
