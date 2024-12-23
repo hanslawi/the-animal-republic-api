@@ -101,7 +101,7 @@ exports.deleteProduct = async (req, res, next) => {
 exports.generateProductVariants = async (req, res, next) => {
   try {
     // get PRODUCT by ID
-    const product = await Product.findById(req.params.productId).populate('subcategory');
+    const product = await Product.findById(req.params.productId).populate('category');
 
     // check if PRODUCT is found
     if (!product) return next(new AppError("Product not found", 404));
