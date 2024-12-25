@@ -7,6 +7,7 @@ const categoryRouter = require("./src/routes/category.routes");
 const subcategoryRouter = require("./src/routes/subcategory.routes");
 const productRouter = require("./src/routes/product.routes");
 const productVariantRouter = require("./src/routes/productVariant.routes");
+const uiRouter = require("./src/routes/ui.routes");
 
 // init express
 const app = express();
@@ -22,6 +23,7 @@ app.use("/api/categories", categoryRouter);
 app.use("/api/subcategories", subcategoryRouter);
 app.use("/api/products", productRouter);
 app.use("/api/productvariants", productVariantRouter);
+app.use("/api/ui", uiRouter);
 
 // error-handling middleware
 app.use((err, req, res, next) => {

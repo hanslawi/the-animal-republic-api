@@ -9,6 +9,9 @@ const categorySchema = new mongoose.Schema({
   },
   description: String,
   images: { type: [{ altText: String, fileURL: String }] },
+  swiperSliders: {
+    type: [{ product: { type: mongoose.Schema.ObjectId, ref: "Product" } }],
+  },
   slug: String,
 });
 

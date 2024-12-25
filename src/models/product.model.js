@@ -33,6 +33,7 @@ const productSchema = mongoose.Schema({
   slug: { type: String, unique: true },
   category: { type: mongoose.Schema.ObjectId, ref: "Category" },
   subcategory: { type: mongoose.Schema.ObjectId, ref: "SubCategory" },
+  swiperSliderImageFilename: { type: String },
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies
