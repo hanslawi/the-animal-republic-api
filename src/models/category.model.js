@@ -13,7 +13,7 @@ const categorySchema = new mongoose.Schema({
     type: [{ product: { type: mongoose.Schema.ObjectId, ref: "Product" } }],
   },
   bannerColor: { type: String },
-  bannerImages: {
+  bannerImagesFileName: {
     type: [String],
   },
   slug: String,
