@@ -8,6 +8,8 @@ const subcategorySchema = new mongoose.Schema({
   },
   description: String,
   images: { type: [{ altText: String, fileURL: String }] },
+  bannerColor: { type: String },
+  bannerImageFileName: { type: String },
   slug: String,
   category: { type: mongoose.Schema.ObjectId, ref: "Category", required: true },
 });
