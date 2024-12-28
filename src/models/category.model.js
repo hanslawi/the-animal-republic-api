@@ -12,6 +12,9 @@ const categorySchema = new mongoose.Schema({
   swiperSliders: {
     type: [{ product: { type: mongoose.Schema.ObjectId, ref: "Product" } }],
   },
+  bannerImages: {
+    type: [String],
+  },
   slug: String,
 });
 

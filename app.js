@@ -1,6 +1,7 @@
 // import libraries
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 
 // import router
 const categoryRouter = require("./src/routes/category.routes");
@@ -17,6 +18,9 @@ app.use(express.json());
 
 // morgan middleware
 app.use(morgan("dev"));
+
+// allow cors
+app.use(cors());
 
 // routers
 app.use("/api/categories", categoryRouter);
