@@ -30,6 +30,7 @@ exports.getHomeData = async (req, res, next) => {
         homeData.main.categories = [
           ...homeData.main.categories,
           {
+            id: category.id,
             name: category.name,
             slug: category.slug,
             sliders: category.swiperSliders.map((slide) => {
@@ -44,6 +45,23 @@ exports.getHomeData = async (req, res, next) => {
           },
         ];
 
+        homeData.search.categories = [
+          ...homeData.search.categories,
+          {
+            id: category.id,
+            name: category.name,
+            slug: category.slug,
+            bannerColor: category.bannerColor,
+            bannerImagesFileName: category.bannerImagesFileName,
+          },
+        ];
+
+        return 1;
+      })
+    );
+
+    await Promise.all(
+      homeData.search.categories.map(async (category, index) => {
         // get SUBCATEGORIES of current CATEGORY
         const subcategories = await SubCategory.find({
           category: category.id,
@@ -54,50 +72,18 @@ exports.getHomeData = async (req, res, next) => {
           category: category.id,
         }).select("attributes name slug regularPrice images");
 
-        homeData.search.categories = [
-          ...homeData.search.categories,
-          {
-            name: category.name,
-            slug: category.slug,
-            bannerColor: category.bannerColor,
-            bannerImagesFileName: category.bannerImagesFileName,
-            subcategories: subcategories,
-            featuredProducts: featuredProducts,
-          },
-        ];
+        homeData.search.categories[index] = {
+          ...homeData.search.categories[index],
+          subcategories: subcategories,
+          featuredProducts: featuredProducts,
+        };
 
         return 1;
       })
     );
 
-    // iterate CATEGORIES
-
+    // send JSON response with homeData
     res.json({ data: homeData });
-
-    // // copy names of CATEGORIES to homeData.categories
-    // homeData.categories = categories.map((category) => category.name);
-
-    // // define swiper
-    // homeData.swiper = {};
-
-    // // FOR MAIN
-    // // iterate categories
-    // homeData.categories.map((category, index) => {
-    //   homeData.swiper[category] = categories[index].swiperSliders.map(
-    //     (slide) => {
-    //       const slideData = {
-    //         productName: slide.product.name,
-    //         productPrice: slide.product.regularPrice,
-    //         productSlug: slide.product.slug,
-    //         slideImageFilename: slide.product.swiperSliderImageFilename,
-    //       };
-    //       return slideData;
-    //     }
-    //   );
-    //   return 1;
-    // });
-
-    // res.status(200).json({ data: homeData });
   } catch (err) {
     next(err);
   }
