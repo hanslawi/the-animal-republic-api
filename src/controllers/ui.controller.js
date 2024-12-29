@@ -4,6 +4,7 @@ const AppError = require("../utils/appError");
 // import model
 const Category = require("../models/category.model");
 const SubCategory = require("../models/subcategory.model");
+const Product = require("../models/product.model");
 
 exports.getHomeData = async (req, res, next) => {
   try {
@@ -48,6 +49,11 @@ exports.getHomeData = async (req, res, next) => {
           category: category.id,
         }).select("name slug bannerColor bannerImageFileName");
 
+        // get featured PROUDCTS of current CATEGORY
+        const featuredProducts = await Product.find({
+          category: category.id,
+        }).select("attributes name slug regularPrice images");
+
         homeData.search.categories = [
           ...homeData.search.categories,
           {
@@ -56,6 +62,7 @@ exports.getHomeData = async (req, res, next) => {
             bannerColor: category.bannerColor,
             bannerImagesFileName: category.bannerImagesFileName,
             subcategories: subcategories,
+            featuredProducts: featuredProducts,
           },
         ];
 
