@@ -7,5 +7,7 @@ const uiController = require("../controllers/ui.controller");
 const router = express.Router();
 
 router.get("/home", uiController.getHomeData);
+router.get("/catalog/:categorySlug", uiController.getCatalogData);
+router.get("/searchnavigation", uiController.getSearchNavigationData);
 
 module.exports = router;
