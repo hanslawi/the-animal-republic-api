@@ -32,9 +32,9 @@ app.use("/api/ui", uiRouter);
 // error-handling middleware
 app.use((err, req, res, next) => {
   // PROD
-  //   if (err.status)
-  //     res.status(err.status).json({ status: "ERROR", message: err.message });
-  //   else res.status(500).json({ status: "ERROR", message: err.message });
+  if (err.status)
+    res.status(err.status).json({ status: "ERROR", message: err.message });
+  else res.status(500).json({ status: "ERROR", message: err.message });
 
   // DEV
   console.log(err);
