@@ -107,7 +107,7 @@ exports.getHomeData = async (req, res, next) => {
   }
 };
 
-exports.getCatalogData = async (req, res, next) => {
+exports.getCatalogDataOfCategory = async (req, res, next) => {
   try {
     const { categorySlug } = req.params;
 
@@ -134,8 +134,60 @@ exports.getCatalogData = async (req, res, next) => {
       name: category.name,
       slug: category.slug,
       bannerImagesFileName: category.bannerImagesFileName,
-      bannerCololor: category.bannerColor,
+      bannerColor: category.bannerColor,
       subcategories: subcategories,
+      products: products,
+    };
+
+    // send JSON response with catalogData
+    res.json({ data: catalogData });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getCatalogDataOfSubcategory = async (req, res, next) => {
+  try {
+    const { categorySlug, subcategorySlug } = req.params;
+
+    // get CATEGORY by route param categorySlug
+    const category = await Category.findOne({ slug: categorySlug }).select(
+      "id name slug bannerColor bannerImagesFileName"
+    );
+
+    // if CATEGORY with that slug is not found, throw AppError
+    if (!category) return next(new AppError("Category not found.", 404));
+
+    // get SUBCATEGORY by category id and route param subcategorySlug
+    const subcategory = await SubCategory.findOne({
+      category: category.id,
+      slug: subcategorySlug,
+    });
+
+    // if SUBCATEGORY with that slug and category id is not found, throw AppError
+    if (!subcategory) return next(new AppError("Subcategory not found.", 404));
+
+    // get products of category
+    const products = await Product.find({
+      category: category.id,
+      subcategory: subcategory.id,
+    });
+
+    // init catalogData object
+    const catalogData = {};
+
+    const subcategories = await SubCategory.find({
+      category: category.id,
+    }).select("name slug bannerColor bannerImageFileName");
+
+    catalogData.category = {
+      id: category.id,
+      name: category.name,
+      slug: category.slug,
+      bannerImagesFileName: category.bannerImagesFileName,
+      bannerColor: category.bannerColor,
+      subcategories: subcategories,
+      subcategory: subcategory,
       products: products,
     };
 
