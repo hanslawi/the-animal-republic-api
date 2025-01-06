@@ -112,7 +112,9 @@ exports.getCatalogData = async (req, res, next) => {
     const { categorySlug } = req.params;
 
     // get CATEGORY by route param categorySlug
-    const category = await Category.findOne({ slug: categorySlug });
+    const category = await Category.findOne({ slug: categorySlug }).select(
+      "id name slug bannerColor bannerImagesFileName"
+    );
 
     // if CATEGORY with that slug is not found, throw AppError
     if (!category) return next(new AppError("Category not found.", 404));
@@ -123,10 +125,17 @@ exports.getCatalogData = async (req, res, next) => {
     // init catalogData object
     const catalogData = {};
 
+    const subcategories = await SubCategory.find({
+      category: category.id,
+    }).select("name slug bannerColor bannerImageFileName");
+
     catalogData.category = {
       id: category.id,
       name: category.name,
       slug: category.slug,
+      bannerImagesFileName: category.bannerImagesFileName,
+      bannerCololor: category.bannerColor,
+      subcategories: subcategories,
       products: products,
     };
 
