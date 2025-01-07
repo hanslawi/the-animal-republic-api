@@ -10,5 +10,6 @@ router.get("/home", uiController.getHomeData);
 router.get("/catalog/:categorySlug", uiController.getCatalogDataOfCategory);
 router.get("/catalog/:categorySlug/:subcategorySlug", uiController.getCatalogDataOfSubcategory);
 router.get("/searchnavigation", uiController.getSearchNavigationData);
+router.get("/product/:productSlug", uiController.getProductData);
 
 module.exports = router;

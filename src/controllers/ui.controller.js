@@ -5,6 +5,7 @@ const AppError = require("../utils/appError");
 const Category = require("../models/category.model");
 const SubCategory = require("../models/subcategory.model");
 const Product = require("../models/product.model");
+const ProductVariant = require("../models/productVariant.model");
 
 exports.getSearchNavigationData = async (req, res, next) => {
   try {
@@ -193,6 +194,45 @@ exports.getCatalogDataOfSubcategory = async (req, res, next) => {
 
     // send JSON response with catalogData
     res.json({ data: catalogData });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getProductData = async (req, res, next) => {
+  try {
+    const { productSlug } = req.params;
+
+    // get product by product slug
+    const product = await Product.findOne({ slug: productSlug })
+      .populate("category")
+      .populate("subcategory");
+
+    if (!product) return next(new AppError("Product not found", 404));
+
+    // get product variants by product id
+    const productVariants = await ProductVariant.find({ product: product.id });
+
+    const productData = {};
+
+    productData.product = {
+      id: product.id,
+      name: product.description,
+      regularPrice: product.regularPrice,
+      attributes: product.attributes,
+      images: product.images,
+      category: {
+        name: product.category.name,
+        slug: product.category.slug,
+      },
+      subcategory: {
+        name: product.subcategory.name,
+        slug: product.subcategory.slug,
+      },
+      productVariants: productVariants,
+    };
+
+    res.status(200).json({ data: productData });
   } catch (err) {
     next(err);
   }
