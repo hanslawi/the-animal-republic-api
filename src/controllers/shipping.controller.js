@@ -1,4 +1,8 @@
+// import models
 const Country = require("../models/country.model");
+const ShippingClass = require("../models/shippingClass.model");
+
+// import utils
 const AppError = require("../utils/appError");
 
 exports.addCountry = async (req, res, next) => {
@@ -39,6 +43,30 @@ exports.getStatesOfCountry = async (req, res, next) => {
       status: "SUCCESS",
       results: states.length,
       data: { states: states },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.addShippingClass = async (req, res, next) => {
+  try {
+    const shippingClass = await ShippingClass.create(req.body);
+
+    res.status(200).json({ status: "SUCCESS", data: { shippingClass } });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getShippingClasses = async (req, res, next) => {
+  try {
+    const shippingClasses = await ShippingClass.find({});
+
+    res.status(200).json({
+      status: "SUCCESS",
+      results: shippingClasses.length,
+      data: { shippingClasses },
     });
   } catch (err) {
     next(err);
