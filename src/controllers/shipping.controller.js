@@ -1,6 +1,7 @@
 // import models
 const Country = require("../models/country.model");
 const ShippingClass = require("../models/shippingClass.model");
+const ShippingFee = require("../models/shippingFee.model");
 
 // import utils
 const AppError = require("../utils/appError");
@@ -70,5 +71,47 @@ exports.getShippingClasses = async (req, res, next) => {
     });
   } catch (err) {
     next(err);
+  }
+};
+
+exports.addShippingFee = async (req, res, next) => {
+  try {
+    const shippingFee = await ShippingFee.create(req.body);
+
+    res.status(200).json({ status: "SUCCESS", data: { shippingFee } });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getShippingFeesOfCountry = async (req, res, next) => {
+  try {
+    // get country by code
+    const country = await Country.findOne({ code: req.params.countryCode });
+
+    // get country id
+    const { id: countryId } = country;
+
+    const shippingFees = await ShippingFee.find({ country: countryId })
+      .populate("country")
+      .populate("shippingClass");
+
+    res.status(200).json({
+      status: "SUCCESS",
+      results: shippingFees.length,
+      data: { shippingFees },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.calculateShippingFee = (req, res, next) => {
+  try {
+    // get products from cart
+    const { products } = req.body;
+    console.log(products);
+  } catch (error) {
+    next(error);
   }
 };
