@@ -217,7 +217,9 @@ exports.getProductData = async (req, res, next) => {
 
     productData.product = {
       id: product.id,
-      name: product.description,
+      name: product.name,
+      slug: product.slug,
+      description: product.description,
       regularPrice: product.regularPrice,
       attributes: product.attributes,
       images: product.images,
