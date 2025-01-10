@@ -11,7 +11,7 @@ exports.addCountry = async (req, res, next) => {
   try {
     const country = await Country.create(req.body);
 
-    res.status(200).json({ status: "SUCCESS", data: { country } });
+    res.status(201).json({ status: "SUCCESS", data: { country } });
   } catch (err) {
     next(err);
   }
@@ -55,7 +55,7 @@ exports.addShippingClass = async (req, res, next) => {
   try {
     const shippingClass = await ShippingClass.create(req.body);
 
-    res.status(200).json({ status: "SUCCESS", data: { shippingClass } });
+    res.status(201).json({ status: "SUCCESS", data: { shippingClass } });
   } catch (err) {
     next(err);
   }
@@ -79,7 +79,7 @@ exports.addShippingFee = async (req, res, next) => {
   try {
     const shippingFee = await ShippingFee.create(req.body);
 
-    res.status(200).json({ status: "SUCCESS", data: { shippingFee } });
+    res.status(201).json({ status: "SUCCESS", data: { shippingFee } });
   } catch (err) {
     next(err);
   }
