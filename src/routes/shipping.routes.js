@@ -13,6 +13,6 @@ router.get(
   "/:countryCode/shippingfees",
   shippingController.getShippingFeesOfCountry
 );
-router.post("/shippingfees", shippingController.calculateShippingFee);
+router.post("/calculateshippingfee", shippingController.calculateShippingFee);
 
 module.exports = router;

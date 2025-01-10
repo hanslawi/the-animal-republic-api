@@ -2,6 +2,7 @@
 const Country = require("../models/country.model");
 const ShippingClass = require("../models/shippingClass.model");
 const ShippingFee = require("../models/shippingFee.model");
+const Product = require("../models/product.model");
 
 // import utils
 const AppError = require("../utils/appError");
@@ -106,11 +107,90 @@ exports.getShippingFeesOfCountry = async (req, res, next) => {
   }
 };
 
-exports.calculateShippingFee = (req, res, next) => {
+exports.calculateShippingFee = async (req, res, next) => {
   try {
-    // get products from cart
-    const { products } = req.body;
-    console.log(products);
+    // get items from cart
+    const { items } = req.body;
+
+    // get id field from items
+    const itemIds = items.map((item) => item.id);
+
+    // get shipping class of products by item ids
+    const products = await Product.find({
+      _id: {
+        $in: itemIds,
+      },
+    })
+      .select("shippingClass")
+      .sort({ shippingClass: 1 });
+
+    // add item quantity field to products
+    const productsWithItemQuantity = products.map((product) => {
+      const { quantity } = items.filter(
+        (item) => item.id === product._id.toString()
+      )[0];
+      return { ...product.toObject(), quantity };
+    });
+
+    // get country from body
+    const { country } = req.body;
+
+    // get id of country
+    const { _id: countryId } = await Country.findOne({ code: country.code });
+
+    // get shipping fees of country
+    const shippingFees = await ShippingFee.find({ country: countryId });
+
+    let shippingFeeAccumulator = 0;
+    let previousShippingClass;
+
+    productsWithItemQuantity.map((product) => {
+      const { firstItem, additionalItem } = shippingFees.filter(
+        (el) => el.shippingClass.toString() === product.shippingClass.toString()
+      )[0];
+
+      if (previousShippingClass === product.shippingClass.toString()) {
+        if (product.quantity > 1)
+          shippingFeeAccumulator +=
+            Number(additionalItem) * Number(product.quantity);
+        else shippingFeeAccumulator += Number(additionalItem);
+      } else if (previousShippingClass !== product.shippingClass.toString()) {
+        if (product.quantity > 1) {
+          // get shipping fee for first item
+          shippingFeeAccumulator += Number(firstItem);
+          // get shipping fees for additional items
+          shippingFeeAccumulator +=
+            Number(additionalItem) * (Number(product.quantity) - 1);
+          console.log(product.quantity);
+        } else if (product.quantity === 1) {
+          shippingFeeAccumulator += firstItem;
+        }
+      }
+
+      previousShippingClass = product.shippingClass.toString();
+
+      return 1;
+    });
+
+    // await Promise.all(productsShippingClass.map(async (product) => {
+    //   // get
+    //   const
+    // }));
+
+    res.status(200).json({
+      status: "SUCCESS",
+      data: { shippingFee: shippingFeeAccumulator },
+    });
+
+    // res.status(200).json({
+    //   status: "SUCCESS",
+    //   data: { productsWithItemQuantity },
+    // });
+
+    // res.status(200).json({
+    //   items,
+    //   products,
+    // });
   } catch (error) {
     next(error);
   }
