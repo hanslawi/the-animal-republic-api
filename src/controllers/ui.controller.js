@@ -239,3 +239,48 @@ exports.getProductData = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getCartData = async (req, res, next) => {
+  try {
+    // get items from req.body
+    const { items } = req.body;
+
+    const cartData = {};
+    cartData.items = [];
+
+    // get product and product variant of item
+    await Promise.all(
+      items.map(async (item) => {
+        const product = await Product.findOne({ _id: item.id }).select(
+          "_id name slug"
+        );
+        const productVariant = await ProductVariant.findOne({
+          _id: item.productVariant._id,
+        }).select("product attributes regularPrice images");
+
+        cartData.items = [
+          ...cartData.items,
+          {
+            id: item.id,
+            name: product.name,
+            slug: product.slug,
+            productVariant: {
+              _id: item.productVariant._id,
+              product: productVariant.product,
+              attributes: productVariant.attributes,
+              regularPrice: productVariant.regularPrice,
+              images: productVariant.images,
+            },
+            quantity: item.quantity,
+          },
+        ];
+
+        return 1;
+      })
+    );
+
+    res.status(200).json({ status: "SUCCESS", data: cartData });
+  } catch (err) {
+    next(err);
+  }
+};
