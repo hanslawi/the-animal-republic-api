@@ -1,0 +1,16 @@
+const Order = require("../models/order.model");
+const AppError = require("../utils/appError");
+
+exports.getOrder = async (req, res, next) => {
+  try {
+    // get CATEGORY by ID
+    const order = await Order.findById(req.params.orderId).populate('items.product').populate('items.productVariant');
+
+    // if CATEGORY is not found, throw AppError
+    if (!order) return next(new AppError("Order not found", 404));
+
+    res.status(200).json({ status: "SUCCESS", data: { order } });
+  } catch (err) {
+    next(err);
+  }
+};
