@@ -11,6 +11,7 @@ const productVariantRouter = require("./src/routes/productVariant.routes");
 const uiRouter = require("./src/routes/ui.routes");
 const shippingRouter = require("./src/routes/shipping.routes");
 const taxRouter = require("./src/routes/tax.routes");
+const paymentRouter = require("./src/routes/payment.routes");
 
 // init express
 const app = express();
@@ -32,6 +33,7 @@ app.use("/api/productvariants", productVariantRouter);
 app.use("/api/ui", uiRouter);
 app.use("/api/shipping", shippingRouter);
 app.use("/api/tax", taxRouter);
+app.use("/api/payments", paymentRouter);
 
 // error-handling middleware
 app.use((err, req, res, next) => {
