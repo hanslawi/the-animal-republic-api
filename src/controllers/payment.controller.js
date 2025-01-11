@@ -4,6 +4,7 @@ const ShippingClass = require("../models/shippingClass.model");
 const ShippingFee = require("../models/shippingFee.model");
 const Product = require("../models/product.model");
 const ProductVariant = require("../models/productVariant.model");
+const Order = require("../models/order.model");
 
 // import utils
 const AppError = require("../utils/appError");
@@ -69,18 +70,13 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
         shippingFeeAccumulator += firstItem;
       }
     }
-
     previousShippingClass = product.shippingClass.toString();
 
     return 1;
   });
 
-  // create line items
-
-  // item name
-  // item image
-  // item price
-  // item quantity
+  let itemsSubtotalAccumulator = 0;
+  let orderItems = [];
 
   const lineItems = await Promise.all(
     items.map(async (item) => {
@@ -88,6 +84,15 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
       const productVariant = await ProductVariant.findOne({
         _id: item.productVariant._id,
       }).populate("product");
+
+      orderItems = [
+        ...orderItems,
+        {
+          product: productVariant.product._id,
+          productVariant: productVariant._id,
+          quantity: item.quantity,
+        },
+      ];
 
       const lineItem = {
         price_data: {
@@ -101,45 +106,44 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
         quantity: item.quantity,
       };
 
+      itemsSubtotalAccumulator +=
+        Number(item.quantity) * Number(productVariant.regularPrice);
+
       return lineItem;
     })
   );
-  console.log(JSON.stringify(lineItems));
-  // [
-  //   {
-  //     price_data: {
-  //       currency: "usd",
-  //       product_data: {
-  //         images:
-  //           "https://files.cdn.printful.com/files/470/4702ed7b64f6fa029b09956f0bc6b0ca_preview.png",
-  //       },
-  //       unit_amount_decimal: 3699,
-  //     },
-  //     quantity: 5,
-  //   },
-  //   {
-  //     price_data: {
-  //       currency: "usd",
-  //       product_data: {
-  //         images:
-  //           "https://files.cdn.printful.com/files/92e/92e15070f3093f16284e7ff4f764a51e_preview.png",
-  //       },
-  //       unit_amount_decimal: 4099,
-  //     },
-  //     quantity: 5,
-  //   },
-  //   {
-  //     price_data: {
-  //       currency: "usd",
-  //       product_data: {
-  //         images:
-  //           "https://files.cdn.printful.com/files/3f8/3f859dff12effd6a63f472104113f858_preview.png",
-  //       },
-  //       unit_amount_decimal: 2199,
-  //     },
-  //     quantity: 2,
-  //   },
-  // ];
+
+  // get customer data from req body
+  const {
+    emailAddress,
+    firstName,
+    lastName,
+    addressLine1,
+    addressLine2,
+    city,
+    state,
+    zipCode,
+    phone,
+    paymentMethod,
+  } = req.body.customer;
+
+  const order = await Order.create({
+    customerEmailAddress: emailAddress,
+    customerCountry: country.code,
+    customerFirstName: firstName,
+    customerLastName: lastName,
+    customerAddressLine1: addressLine1,
+    customerAddressLine2: addressLine2,
+    customerCity: city,
+    customerState: state,
+    customerZipCode: zipCode,
+    customerPhone: phone,
+    paymentMethod: paymentMethod,
+    items: orderItems,
+    itemsSubtotal: itemsSubtotalAccumulator,
+    shippingAmount: shippingFeeAccumulator,
+    vatAmount: 0,
+  });
 
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
@@ -170,5 +174,11 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
     cancel_url: `http://localhost:5173/checkout`,
   });
 
-  res.status(200).json({ session });
+  res.status(201).json({
+    status: "SUCCESS",
+    data: {
+      stripeCheckoutURL: session.url,
+      order: { id: order._id },
+    },
+  });
 };
