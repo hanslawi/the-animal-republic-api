@@ -36,6 +36,7 @@ const productSchema = mongoose.Schema({
   swiperSliderImageFilename: { type: String },
   featured: { type: Boolean, default: false },
   shippingClass: { type: mongoose.Schema.ObjectId, ref: "ShippingClass" },
+  themeColor: { type: String, default: "#E7E5E4" },
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies

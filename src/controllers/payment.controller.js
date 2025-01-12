@@ -1,19 +1,17 @@
+// This is your test secret API key.
+const stripe = require("stripe")(
+  process.env.STRIPE_SECRET_KEY ||
+    "sk_test_51Qfe7iIDHHonGOuqLPXxiFOiRDTG3NrEWE4vhWhiuS7KVMZC1xhzegLEcgn7kIFWuZuwxyD72xCdpAqxUf8RZA1N00DekJUS5J"
+);
+
 // import models
 const Country = require("../models/country.model");
-const ShippingClass = require("../models/shippingClass.model");
 const ShippingFee = require("../models/shippingFee.model");
 const Product = require("../models/product.model");
 const ProductVariant = require("../models/productVariant.model");
 const Order = require("../models/order.model");
 
 // import utils
-const AppError = require("../utils/appError");
-
-// This is your test secret API key.
-const stripe = require("stripe")(
-  process.env.STRIPE_SECRET_KEY ||
-    "sk_test_51Qfe7iIDHHonGOuqLPXxiFOiRDTG3NrEWE4vhWhiuS7KVMZC1xhzegLEcgn7kIFWuZuwxyD72xCdpAqxUf8RZA1N00DekJUS5J"
-);
 
 exports.stripeCreateCheckoutSession = async (req, res, next) => {
   // get items from req.body

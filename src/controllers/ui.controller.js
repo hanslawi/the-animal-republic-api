@@ -46,7 +46,7 @@ exports.getSearchNavigationData = async (req, res, next) => {
         // get featured PROUDCTS of current CATEGORY
         const featuredProducts = await Product.find({
           category: category.id,
-        }).select("attributes name slug regularPrice images");
+        }).select("attributes name slug regularPrice images themeColor");
 
         searchNavigationData.categories[index] = {
           ...searchNavigationData.categories[index],
@@ -232,6 +232,7 @@ exports.getProductData = async (req, res, next) => {
         slug: product.subcategory.slug,
       },
       productVariants: productVariants,
+      themeColor: product.themeColor,
     };
 
     res.status(200).json({ data: productData });
@@ -252,7 +253,7 @@ exports.getCartData = async (req, res, next) => {
     await Promise.all(
       items.map(async (item) => {
         const product = await Product.findOne({ _id: item.id }).select(
-          "_id name slug"
+          "_id name slug themeColor"
         );
         const productVariant = await ProductVariant.findOne({
           _id: item.productVariant._id,
@@ -272,6 +273,7 @@ exports.getCartData = async (req, res, next) => {
               images: productVariant.images,
             },
             quantity: item.quantity,
+            themeColor: product.themeColor,
           },
         ];
 
