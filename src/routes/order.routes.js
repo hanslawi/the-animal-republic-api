@@ -7,5 +7,6 @@ const orderController = require("../controllers/order.controller");
 const router = express.Router();
 
 router.get("/:orderId", orderController.getOrder);
+router.get("/", orderController.getOrders);
 
 module.exports = router;
