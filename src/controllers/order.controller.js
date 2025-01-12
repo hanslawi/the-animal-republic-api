@@ -45,3 +45,27 @@ exports.deleteOrder = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateOrder = async (req, res, next) => {
+  try {
+    // find ORDER by ID and update
+    const updatedOrder = await Order.findByIdAndUpdate(
+      req.params.orderId,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    // if ORDER is not found, throw AppError to next middleware
+    if (!updatedOrder) return next(new AppError("Order not found", 404));
+
+    // send JSON response with updated ORDER
+    res
+      .status(200)
+      .json({ status: "SUCCESS", data: { product: updatedOrder } });
+  } catch (err) {
+    next(err);
+  }
+};

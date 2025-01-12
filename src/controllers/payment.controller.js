@@ -124,8 +124,11 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
     state,
     zipCode,
     phone,
-    paymentMethod,
   } = req.body.customer;
+
+  // get payment method from req body
+
+  const { paymentMethod } = req.body;
 
   const order = await Order.create({
     customerEmailAddress: emailAddress,
