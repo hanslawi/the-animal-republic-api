@@ -54,6 +54,15 @@ const orderSchema = new mongoose.Schema({
   vatAmount: {
     type: Number,
   },
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
+  status: {
+    type: String,
+    enum: ["Pending payment", "Processing", "Completed"],
+    default: "Pending payment",
+  },
 });
 
 const Order = mongoose.model("Order", orderSchema);
