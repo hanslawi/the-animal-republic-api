@@ -8,5 +8,5 @@ const router = express.Router();
 
 router.get("/:orderId", orderController.getOrder);
 router.get("/", orderController.getOrders);
-
+router.delete("/:orderId", orderController.deleteOrder);
 module.exports = router;

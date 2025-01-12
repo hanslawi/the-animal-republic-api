@@ -3,12 +3,12 @@ const AppError = require("../utils/appError");
 
 exports.getOrder = async (req, res, next) => {
   try {
-    // get CATEGORY by ID
+    // get ORDER by ID
     const order = await Order.findById(req.params.orderId)
       .populate("items.product")
       .populate("items.productVariant");
 
-    // if CATEGORY is not found, throw AppError
+    // if ORDER is not found, throw AppError
     if (!order) return next(new AppError("Order not found", 404));
 
     res.status(200).json({ status: "SUCCESS", data: { order } });
@@ -27,6 +27,20 @@ exports.getOrders = async (req, res, next) => {
     res
       .status(200)
       .json({ status: "SUCCESS", results: orders.length, data: { orders } });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteOrder = async (req, res, next) => {
+  try {
+    // get ORDER by ID
+    const order = await Order.findById(req.params.orderId);
+
+    // if ORDER is not found, throw AppError
+    if (!order) return next(new AppError("Order not found", 404));
+
+    res.status(200).json({ status: "SUCCESS", data: { order } });
   } catch (err) {
     next(err);
   }
