@@ -10,7 +10,7 @@ dotenv.config({ path: path.join(__dirname, "config.env") });
 const app = require("./app");
 
 // connect to MongoDB
-const db = process.env.MONGODB_LOCAL_CONNECTION;
+const db = process.env.MONGODB_ATLAS_CONNECTION;
 mongoose.connect(db).then(() => {
   console.log(`Connected to ${db}`);
 });
