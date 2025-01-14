@@ -146,6 +146,8 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
     vatAmount: 0,
   });
 
+  console.log(req.get("origin"));
+
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     shipping_options: [
@@ -171,8 +173,8 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
       },
     ],
     mode: "payment",
-    success_url: `http://localhost:5173/checkout/success`,
-    cancel_url: `http://localhost:5173/checkout`,
+    success_url: `${req.get("origin")}/checkout/success`,
+    cancel_url: `${req.get("origin")}/checkout`,
   });
 
   res.status(201).json({
