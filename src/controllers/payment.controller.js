@@ -191,7 +191,7 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
 
 exports.stripeWebhook = (req, res, next) => {
   const event = req.body;
-
+  console.log(event);
   // Handle the event
   switch (event.type) {
     case "checkout.session.completed":
