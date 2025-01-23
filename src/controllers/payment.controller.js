@@ -175,6 +175,9 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
     mode: "payment",
     success_url: `${req.get("origin")}/checkout/success`,
     cancel_url: `${req.get("origin")}/checkout`,
+    metadata: {
+      orderId: order._id.toString(),
+    },
   });
 
   res.status(201).json({
@@ -184,4 +187,30 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
       order: { id: order._id },
     },
   });
+};
+
+exports.stripeWebhook = (req, res, next) => {
+  const event = req.body;
+
+  // Handle the event
+  switch (event.type) {
+    case "payment_intent.succeeded":
+      const paymentIntent = event.data.object;
+      // Then define and call a method to handle the successful payment intent.
+      // handlePaymentIntentSucceeded(paymentIntent);
+      console.log({ paymentIntent });
+      break;
+    case "payment_method.attached":
+      const paymentMethod = event.data.object;
+      // Then define and call a method to handle the successful attachment of a PaymentMethod.
+      // handlePaymentMethodAttached(paymentMethod);
+      console.log({ paymentMethod });
+      break;
+    // ... handle other event types
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+
+  // Return a response to acknowledge receipt of the event
+  res.json({ received: true });
 };
