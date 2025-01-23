@@ -17,17 +17,17 @@ const orderRouter = require("./src/routes/order.routes");
 // init express
 const app = express();
 
-// router with webhook
-app.use("/api/payments", paymentRouter);
-
-// parse incoming json body
-app.use(express.json());
-
 // morgan middleware
 app.use(morgan("dev"));
 
 // allow cors
 app.use(cors());
+
+// router with webhook
+app.use("/api/payments", paymentRouter);
+
+// parse incoming json body
+app.use(express.json());
 
 // routers
 app.use("/api/categories", categoryRouter);
