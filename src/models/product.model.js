@@ -37,6 +37,7 @@ const productSchema = mongoose.Schema({
   featured: { type: Boolean, default: false },
   shippingClass: { type: mongoose.Schema.ObjectId, ref: "ShippingClass" },
   themeColor: { type: String, default: "#E7E5E4" },
+  videoFilename: { type: String },
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies
