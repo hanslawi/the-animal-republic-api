@@ -189,7 +189,7 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
   });
 };
 
-exports.stripeWebhook = (req, res, next) => {
+exports.stripeWebhook = async (req, res, next) => {
   const sig = req.headers["stripe-signature"];
 
   let event;
@@ -204,11 +204,23 @@ exports.stripeWebhook = (req, res, next) => {
     res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
+  let order;
+
   // Handle the event
   switch (event.type) {
     case "checkout.session.completed":
       const checkoutSession = event.data.object;
-      console.log({ checkoutSession });
+
+      // Update order status of checkoutSession.orderId to "Processing"
+      order = await Order.findByIdAndUpdate(
+        checkoutSession.metadata.orderId,
+        { status: "Processing" },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+
       break;
     // ... handle other event types
     default:
@@ -216,5 +228,5 @@ exports.stripeWebhook = (req, res, next) => {
   }
 
   // Return a res to acknowledge receipt of the event
-  res.json({ received: true });
+  res.json({ received: true, data: { order: order } });
 };
