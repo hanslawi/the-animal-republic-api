@@ -190,8 +190,20 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
 };
 
 exports.stripeWebhook = (req, res, next) => {
-  const event = req.body;
-  console.log(event);
+  const sig = req.headers["stripe-signature"];
+
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET_KEY
+    );
+  } catch (err) {
+    res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
   // Handle the event
   switch (event.type) {
     case "checkout.session.completed":
@@ -203,6 +215,6 @@ exports.stripeWebhook = (req, res, next) => {
       console.log(`Unhandled event type ${event.type}`);
   }
 
-  // Return a response to acknowledge receipt of the event
+  // Return a res to acknowledge receipt of the event
   res.json({ received: true });
 };
