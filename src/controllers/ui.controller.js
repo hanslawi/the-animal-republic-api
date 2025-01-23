@@ -46,7 +46,9 @@ exports.getSearchNavigationData = async (req, res, next) => {
         // get featured PROUDCTS of current CATEGORY
         const featuredProducts = await Product.find({
           category: category.id,
-        }).select("attributes name slug regularPrice images themeColor");
+        }).select(
+          "attributes name slug regularPrice images themeColor videoFilename"
+        );
 
         searchNavigationData.categories[index] = {
           ...searchNavigationData.categories[index],
