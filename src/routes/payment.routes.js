@@ -14,7 +14,7 @@ router.post(
 
 router.post(
   "/stripe/webhook",
-  express.json({ type: "application/json" }),
+  express.raw({ type: "application/json" }),
   paymentController.stripeWebhook
 );
 
