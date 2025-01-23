@@ -194,17 +194,9 @@ exports.stripeWebhook = (req, res, next) => {
 
   // Handle the event
   switch (event.type) {
-    case "payment_intent.succeeded":
-      const paymentIntent = event.data.object;
-      // Then define and call a method to handle the successful payment intent.
-      // handlePaymentIntentSucceeded(paymentIntent);
-      console.log({ paymentIntent });
-      break;
-    case "payment_method.attached":
-      const paymentMethod = event.data.object;
-      // Then define and call a method to handle the successful attachment of a PaymentMethod.
-      // handlePaymentMethodAttached(paymentMethod);
-      console.log({ paymentMethod });
+    case "checkout.session.completed":
+      const checkoutSession = event.data.object;
+      console.log({ checkoutSession });
       break;
     // ... handle other event types
     default:
