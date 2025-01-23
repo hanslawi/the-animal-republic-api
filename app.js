@@ -17,6 +17,9 @@ const orderRouter = require("./src/routes/order.routes");
 // init express
 const app = express();
 
+// router with webhook
+app.use("/api/payments", paymentRouter);
+
 // parse incoming json body
 app.use(express.json());
 
@@ -34,12 +37,11 @@ app.use("/api/productvariants", productVariantRouter);
 app.use("/api/ui", uiRouter);
 app.use("/api/shipping", shippingRouter);
 app.use("/api/tax", taxRouter);
-app.use("/api/payments", paymentRouter);
 app.use("/api/orders", orderRouter);
 app.get("/", (req, res) => {
   res.status(200);
 });
-  
+
 // error-handling middleware
 app.use((err, req, res, next) => {
   // PROD
