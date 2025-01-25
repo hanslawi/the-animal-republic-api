@@ -30,7 +30,6 @@ router.get(
 );
 router.post(
   "/calculateshippingfee",
-  authController.protect,
   shippingController.calculateShippingFee
 );
 
