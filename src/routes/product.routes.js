@@ -3,6 +3,7 @@ const express = require("express");
 
 // import controller
 const productController = require("../controllers/product.controller");
+const authController = require("../controllers/auth.controller");
 
 // import routes
 const productVariantRouter = require("./productVariant.routes");
@@ -10,13 +11,25 @@ const productVariantRouter = require("./productVariant.routes");
 const router = express.Router({ mergeParams: true });
 
 router.get("/", productController.getAllProducts);
-router.post("/", productController.createProduct);
+router.post("/", authController.protect, productController.createProduct);
 router.get("/:productId", productController.getProduct);
-router.patch("/:productId", productController.updateProduct);
-router.delete("/:productId", productController.deleteProduct);
+router.patch(
+  "/:productId",
+  authController.protect,
+  productController.updateProduct
+);
+router.delete(
+  "/:productId",
+  authController.protect,
+  productController.deleteProduct
+);
 
 // generate variants
-router.post("/:productId/generateproductvariants", productController.generateProductVariants);
+router.post(
+  "/:productId/generateproductvariants",
+  authController.protect,
+  productController.generateProductVariants
+);
 
 // nested route
 router.use("/:productId/productvariants", productVariantRouter);

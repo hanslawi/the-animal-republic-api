@@ -7,14 +7,23 @@ const productRouter = require("./product.routes");
 
 // import controllers
 const categoryController = require("../controllers/category.controller");
+const authController = require("../controllers/auth.controller");
 
 const router = express.Router();
 
 router.get("/", categoryController.getAllCategories);
-router.post("/", categoryController.createCategory);
+router.post("/", authController.protect, categoryController.createCategory);
 router.get("/:categoryId", categoryController.getCategory);
-router.patch("/:categoryId", categoryController.updateCategory);
-router.delete("/:categoryId", categoryController.deleteCategory);
+router.patch(
+  "/:categoryId",
+  authController.protect,
+  categoryController.updateCategory
+);
+router.delete(
+  "/:categoryId",
+  authController.protect,
+  categoryController.deleteCategory
+);
 
 // nested routes
 router.use("/:categoryId/subcategories", subcategoryRouter);
