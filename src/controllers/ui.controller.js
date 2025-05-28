@@ -72,8 +72,10 @@ exports.getHomeData = async (req, res, next) => {
     // get CATEGORIES and PRODUCTS ref in swiperSliders
     const categories = await Category.find()
       .populate("swiperSliders.product")
-      .select("swiperSliders id name slug bannerColor bannerImagesFileName");
+      .select("swiperSliders id name slug bannerColor bannerImagesFileName")
+      .sort({ _id: 1 });
 
+    console.log(categories);
     // init homeData object
     const homeData = {};
 
