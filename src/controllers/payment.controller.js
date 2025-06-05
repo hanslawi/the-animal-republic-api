@@ -429,20 +429,20 @@ exports.createOrder = async (cart) => {
   });
 
   // Update order status of checkoutSession.orderId to "Processing"
-  // const _order = await Order.findByIdAndUpdate(
-  //   order._id.toString(),
-  //   { status: "Processing" },
-  //   {
-  //     new: true,
-  //     runValidators: true,
-  //   }
-  // )
-  //   .populate("items.product")
-  //   .populate("items.productVariant");
-  
-    const _order = await Order.findById("6840ab55adae295c9426c0ad")
+  const _order = await Order.findByIdAndUpdate(
+    order._id.toString(),
+    { status: "Processing" },
+    {
+      new: true,
+      runValidators: true,
+    }
+  )
     .populate("items.product")
     .populate("items.productVariant");
+
+  // const _order = await Order.findById("6840ab55adae295c9426c0ad")
+  // .populate("items.product")
+  // .populate("items.productVariant");
 
   const totalNoOfItems = _order.items.reduce((accumulator, item) => {
     const _accumulator = accumulator + item.quantity;
@@ -462,7 +462,7 @@ exports.createOrder = async (cart) => {
     paymentMethod: _order.paymentMethod,
     orderNo: _order._id.toString(),
     totalNoOfItems: totalNoOfItems,
-    items: items,
+    items: _order.items,
   };
 
   console.log(data);
