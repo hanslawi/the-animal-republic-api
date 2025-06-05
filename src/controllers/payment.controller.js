@@ -526,12 +526,14 @@ exports.paypalWebhook = async (req, res, next) => {
   try {
     const { event_type, resource } = req.body;
 
-    console.log(req.body);
-
+    console.log(event_type);
     if (event_type === "PAYMENT.CAPTURE.COMPLETED") {
-      const order = await Order.findById(resource.invoice_id);
+      console.log("PAYMENT_CAPTURE_COMPLETED");
 
-      if (order.status !== "Pending payment") {
+      const order = await Order.findById(resource.invoice_id);
+      console.log(order.status);
+
+      if (order.status === "Pending payment") {
         // Update order status of checkoutSession.orderId to "Processing"
         const updatedOrder = await Order.findByIdAndUpdate(
           resource.invoice_id,
@@ -572,7 +574,7 @@ exports.paypalWebhook = async (req, res, next) => {
           itemsSubtotal: updatedOrder.itemsSubtotal,
           shippingAmount: updatedOrder.shippingAmount,
         };
-        
+
         email.sendEmail(
           "realhanslawi@gmail.com",
           "Thank you for your order!",
