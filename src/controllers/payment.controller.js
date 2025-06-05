@@ -279,11 +279,11 @@ const {
 
 const client = new Client({
   clientCredentialsAuthCredentials: {
-    oAuthClientId: process.env.PAYPAL_CLIENT_ID,
-    oAuthClientSecret: process.env.PAYPAL_CLIENT_SECRET,
+    oAuthClientId: "ASxhsxYTagZUq_PceVOn5jOrid6aEwxoaXJq97heEu81xG7QS-t3YDB7w9jgVlliHvM0WuATankrT4p2",
+    oAuthClientSecret: "EBj_vKomSfVFYmtMwU3jheC8wlyGZ7xIMxiHyyd3oQHlwIOiOZ0QwvlcGDpl9u2YxT_uuunqArZbX7Fw",
   },
   // timeout: 0,
-  environment: Environment.Production,
+  environment: Environment.Sandbox,
   // logging: {
   //   logLevel: LogLevel.Info,
   //   logRequest: { logBody: true },
@@ -505,7 +505,11 @@ exports.captureOrder = async (orderID) => {
 
 exports.paypalWebhook = async (req, res, next) => {
   try {
-    console.log(req.body)
+    const { event_type } = req.body;
+
+    if (event_type === 'PAYMENT.SALE.COMPLETED') {
+
+    }
   } catch (error) {
     throw new Error(error.message);
   }
