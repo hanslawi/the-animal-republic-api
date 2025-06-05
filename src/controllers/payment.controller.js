@@ -291,7 +291,7 @@ const client = new Client({
   // },
 });
 
-console.log(process.env.PAYPAL_CLIENT_ID,process.env.PAYPAL_CLIENT_SECRET);
+console.log(process.env.PAYPAL_CLIENT_ID, process.env.PAYPAL_CLIENT_SECRET);
 
 const ordersController = new OrdersController(client);
 const paymentsController = new PaymentsController(client);
@@ -500,5 +500,13 @@ exports.captureOrder = async (orderID) => {
       // const { statusCode, headers } = error;
       throw new Error(error.message);
     }
+  }
+};
+
+exports.paypalWebhook = async (req, res, next) => {
+  try {
+    console.log(req.body)
+  } catch (error) {
+    throw new Error(error.message);
   }
 };
