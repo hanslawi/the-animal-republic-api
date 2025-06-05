@@ -282,13 +282,13 @@ const client = new Client({
     oAuthClientId: process.env.PAYPAL_CLIENT_ID,
     oAuthClientSecret: process.env.PAYPAL_CLIENT_SECRET,
   },
-  timeout: 0,
+  // timeout: 0,
   environment: Environment.Production,
-  logging: {
-    logLevel: LogLevel.Info,
-    logRequest: { logBody: true },
-    logResponse: { logHeaders: true },
-  },
+  // logging: {
+  //   logLevel: LogLevel.Info,
+  //   logRequest: { logBody: true },
+  //   logResponse: { logHeaders: true },
+  // },
 });
 
 console.log(client);
@@ -426,8 +426,6 @@ exports.createOrder = async (cart) => {
     shippingAmount: shippingFeeAccumulator,
     vatAmount: 0,
   });
-
-  console.log(order);
 
   const collect = {
     body: {
