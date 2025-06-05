@@ -507,11 +507,50 @@ exports.captureOrder = async (orderID) => {
 
 exports.paypalWebhook = async (req, res, next) => {
   try {
-    const { event_type } = req.body;
-
+    const { event_type, resource } = req.body;
     console.log(req.body);
 
-    if (event_type === "PAYMENT.SALE.COMPLETED") {
+    if (event_type === "PAYMENT.CAPTURE.COMPLETED") {
+      // Update order status of checkoutSession.orderId to "Processing"
+      const order = await Order.findByIdAndUpdate(
+        resource.invoice_id,
+        { status: "Processing" },
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+        .populate("items.product")
+        .populate("items.productVariant");
+
+      const totalNoOfItems = order.items.reduce((accumulator, item) => {
+        const _accumulator = accumulator + item.quantity;
+        return _accumulator;
+      }, 0);
+
+      const data = {
+        customerEmailAddress: order.customerEmailAddress,
+        customerFirstName: order.customerFirstName,
+        customerLastName: order.customerLastName,
+        customerAddressLine1: order.customerAddressLine1,
+        customerAddressLine2: order.customerAddressLine2,
+        customerCity: order.customerCity,
+        customerState: order.customerState,
+        customerZipCode: order.customerZipCode,
+        customerPhone: order.customerPhone,
+        paymentMethod: order.paymentMethod,
+        orderNo: order._id.toString(),
+        totalNoOfItems: totalNoOfItems,
+      };
+
+      email.sendEmail(
+        "realhanslawi@gmail.com",
+        "Thank you for your order!",
+        "invoiceReceipt",
+        {
+          data: data,
+        }
+      );
     }
   } catch (error) {
     throw new Error(error.message);
