@@ -112,25 +112,20 @@ exports.calculateShippingFee = async (req, res, next) => {
     // get items from cart
     const { items } = req.body;
 
-    // get id field from items
-    const itemIds = items.map((item) => item.id);
 
-    // get shipping class of products by item ids
-    const products = await Product.find({
-      _id: {
-        $in: itemIds,
-      },
-    })
-      .select("shippingClass")
-      .sort({ shippingClass: 1 });
+    const itemsWithShippingClass = await Promise.all(
+      items.map(async (item) => {
+        const product = await Product.findById(item.id).select(
+          "_id name shippingClass"
+        );
 
-    // add item quantity field to products
-    const productsWithItemQuantity = products.map((product) => {
-      const { quantity } = items.filter(
-        (item) => item.id === product._id.toString()
-      )[0];
-      return { ...product.toObject(), quantity };
-    });
+        return { ...product.toObject(), quantity: item.quantity };
+      })
+    );
+
+    const productsWithItemQuantity = itemsWithShippingClass.sort((a, b) =>
+      a.shippingClass.toString().localeCompare(b.shippingClass.toString())
+    );
 
     // get country from body
     const { country } = req.body;

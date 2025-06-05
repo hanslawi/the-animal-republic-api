@@ -16,9 +16,7 @@ exports.getAllProducts = async (req, res, next) => {
       filter = { subcategory: req.params.subcategoryId };
 
     // get all PRODUCTS
-    const products = await Product.find(filter)
-      .limit(12)
-      .sort("field -dateCreated");
+    const products = await Product.find(filter).limit(12).sort('field -dateCreated');
 
     res
       .status(200)

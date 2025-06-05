@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Panda Riding Dragon T-Shirt",
+    "type": "variable",
+    "SKU": "",
+    "attributes": [
+      {
+        "name": "Color",
+        "values": ["Black", "White"]
+      },
+      {
+        "name": "Size",
+        "values": ["XS", "S", "M", "L", "2XL", "3XL", "4XL", "5XL"]
+      }
+    ],
+    "collections": ["panda-riding-dragon"],
+    "images": [
+      {
+        "altText": "Panda Riding Dragon T-Shirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/175/175631907ccedc5148d52d4b062f4922_preview.png"
+      },
+      {
+        "altText": "Panda Riding Dragon T-Shirt White",
+        "fileURL": "https://files.cdn.printful.com/files/5c1/5c1b989ce20f077ae94df594ed3bc0b2_preview.png"
+      }
+    ],
+    "mainImageIndex": 1,
+    "tags": [],
+    "category": "676909a85adea2037741de0a",
+    "subcategory": "67690fee5adea2037741de47",
+    "regularPrice": 24.99,
+    "shippingClass": "678096717ac75f26337a30e7",
+    "themeColor": "#D67B64"
+  },
+  {
+    "name": "Panda Riding Dragon Hoodie",
+    "type": "variable",
+    "SKU": "",
+    "attributes": [
+      {
+        "name": "Color",
+        "values": ["Black", "White"]
+      },
+      {
+        "name": "Size",
+        "values": ["S", "M", "L", "XL", "2XL", "3XL"]
+      }
+    ],
+    "collections": ["panda-riding-dragon"],
+    "images": [
+      {
+        "altText": "Panda Riding Dragon Hoodie Black",
+        "fileURL": "https://files.cdn.printful.com/files/209/209fe51727642643b3b5b51d3582c10b_preview.png"
+      },
+      {
+        "altText": "Panda Riding Dragon Hoodie White",
+        "fileURL": "https://files.cdn.printful.com/files/dd0/dd0e56a499a620bd096096bd4ba781a0_preview.png"
+      }
+    ],
+    "mainImageIndex": 1,
+    "tags": [],
+    "category": "676909f75adea2037741de0c",
+    "subcategory": "676910205adea2037741de49",
+    "regularPrice": 42.99,
+    "shippingClass": "678096917ac75f26337a30ea",
+    "themeColor": "#D67B64"
+  },
+  {
+    "name": "Panda Riding Dragon Sweatshirt",
+    "type": "variable",
+    "SKU": "",
+    "attributes": [
+      {
+        "name": "Color",
+        "values": ["Black", "White"]
+      },
+      {
+        "name": "Size",
+        "values": ["S", "M", "L", "XL", "2XL", "3XL"]
+      }
+    ],
+    "collections": ["panda-riding-dragon"],
+    "images": [
+      {
+        "altText": "Panda Riding Dragon Sweatshirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/f58/f58bf53e9b610efa115baee43b7ee1f1_preview.png"
+      },
+      {
+        "altText": "Panda Riding Dragon Sweatshirt White",
+        "fileURL": "https://files.cdn.printful.com/files/094/09470993afe71dc638271f1789da9a1b_preview.png"
+      }
+    ],
+    "mainImageIndex": 1,
+    "tags": [],
+    "category": "67690a545adea2037741de0e",
+    "subcategory": "6769102e5adea2037741de4b",
+    "regularPrice": 38.99,
+    "shippingClass": "678096917ac75f26337a30ea",
+    "themeColor": "#D67B64"
+  }
+]

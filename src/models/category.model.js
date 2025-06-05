@@ -17,6 +17,15 @@ const categorySchema = new mongoose.Schema({
     type: [String],
   },
   slug: String,
+  productDescription: {
+    type: String,
+  },
+  productDetails: {
+    type: [String],
+  },
+  productSizeChart: {
+    type: mongoose.Schema.Types.Mixed,
+  },
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies

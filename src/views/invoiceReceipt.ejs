@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:v="urn:schemas-microsoft-com:vml"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="background-color: rgb(229, 235, 250) !important">
+    <div
+      style="
+        width: 100%;
+        max-width: 896px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        background-color: rgb(255, 255, 255) !important;
+      "
+    >
+      <div
+        style="
+          width: 100% important;
+          max-width: 768px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          padding-top: 4rem !important;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+          padding-bottom: 4rem !important;
+        "
+      >
+      <img
+            src="cid:logo@example.com"
+            alt="logo"
+            style="height: 5rem !important"
+          />
+        <h1
+          style="
+            font-weight: 700 !important;
+            font-size: 2.25rem !important;
+            line-height: 2.5rem !important;
+            font-family:
+              PT Sans Narrow,
+              Arial Narrow,
+              sans-serif !important;
+            margin: 0 !important;
+            margin-top: 3rem !important;
+          "
+        >
+          THANK YOU FOR YOUR ORDER!
+        </h1>
+        <div
+          style="
+            display: flex !important;
+            flex-direction: row !important;
+            margin-top: 2.5rem !important;
+          "
+        >
+          <img
+            src="cid:receipt@example.com"
+            alt="receipt"
+            style="height: 4rem !important"
+          />
+          <div
+            style="
+              flex-direction: column !important;
+              display: flex !important;
+              margin-left: 16px !important;
+            "
+          >
+            <span
+              style="
+                font-weight: 700 !important;
+                font-family:
+                  PT Sans Narrow,
+                  Arial Narrow,
+                  sans-serif !important;
+                font-size: 1.25rem !important;
+                line-height: 1.75rem !important;
+                color: rgb(68, 64, 60) !important;
+              "
+              >ORDER NO:</span
+            >
+            <h2
+              style="
+                font-weight: 700 !important;
+                font-size: 1.5rem !important;
+                line-height: 2rem !important;
+                margin: 0 !important;
+                font-family:
+                  PT Sans,
+                  Arial,
+                  sans-serif !important;
+                word-break: break-all !important;
+                word-wrap: break-word !important;
+              "
+            >
+              <%= data.orderNo %>
+            </h2>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex !important;
+            flex-direction: column !important;
+            margin-top: 2.5rem !important;
+            border-top: 1px solid rgb(214, 211, 209) !important;
+            border-bottom: 1px solid rgb(214, 211, 209) !important;
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+          "
+        >
+          <h3
+            style="
+              font-weight: 700 !important;
+              font-size: 1.5rem !important;
+              line-height: 2rem !important;
+              font-family:
+                PT Sans Narrow,
+                Arial Narrow,
+                sans-serif !important;
+              margin: 0 !important;
+            "
+          >
+            ORDER INFORMATION
+          </h3>
+          <div
+            style="
+              margin-top: 2rem !important;
+              display: flex !important;
+              flex-direction: row !important;
+            "
+          >
+            <span
+              style="
+                font-size: 1.125rem !important;
+                line-height: 1.75rem !important;
+                font-family:
+                  PT Sans Narrow,
+                  Arial Narrow,
+                  sans-serif !important;
+                width: 8rem !important;
+                min-width: 8rem !important;
+                font-weight: 700 !important;
+              "
+              >EMAIL</span
+            >
+            <span
+              style="
+                font-size: 1.125rem !important;
+                line-height: 1.75rem !important;
+                font-family:
+                  PT Sans,
+                  Arial,
+                  sans-serif !important;
+                word-break: break-all !important;
+                word-wrap: break-word !important;
+              "
+            >
+              <%= data.customerEmailAddress %></span
+            >
+          </div>
+          <div
+            style="
+              margin-top: 2rem !important;
+              display: flex !important;
+              flex-direction: row !important;
+            "
+          >
+            <span
+              style="
+                font-size: 1.125rem !important;
+                line-height: 1.75rem !important;
+                font-family:
+                  PT Sans Narrow,
+                  Arial Narrow,
+                  sans-serif !important;
+                width: 8rem !important;
+                min-width: 8rem !important;
+                font-weight: 700 !important;
+              "
+              >NAME</span
+            >
+            <span
+              style="
+                font-size: 1.125rem !important;
+                line-height: 1.75rem !important;
+                font-family:
+                  PT Sans,
+                  Arial,
+                  sans-serif !important;
+                word-break: break-all !important;
+                word-wrap: break-word !important;
+              "
+            >
+              <%= data.customerFirstName %> <%= data.customerLastName %></span
+            >
+          </div>
+          <div
+            style="
+              margin-top: 2rem !important;
+              display: flex !important;
+              flex-direction: row !important;
+            "
+          >
+            <span
+              style="
+                font-size: 1.125rem !important;
+                line-height: 1.75rem !important;
+                font-family:
+                  PT Sans Narrow,
+                  Arial Narrow,
+                  sans-serif !important;
+                width: 8rem !important;
+                min-width: 8rem !important;
+                font-weight: 700 !important;
+              "
+              >ADDRESS</span
+            >
+            <div
+              style="
+                display: flex !important;
+                flex-direction: column !important;
+              "
+            >
+              <span
+                style="
+                  font-size: 1.125rem !important;
+                  line-height: 1.75rem !important;
+                  font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                  word-break: break-all !important;
+                  word-wrap: break-word !important;
+                "
+              >
+                <%= data.customerAddressLine1 %></span
+              >
+              <span
+                style="
+                  font-size: 1.125rem !important;
+                  line-height: 1.75rem !important;
+                  font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                  word-break: break-all !important;
+                  word-wrap: break-word !important;
+                "
+              >
+                <%= data.customerAddressLine2 %></span
+              >
+              <span
+                style="
+                  font-size: 1.125rem !important;
+                  line-height: 1.75rem !important;
+                  font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                  word-break: break-all !important;
+                  word-wrap: break-word !important;
+                "
+              >
+                <%= data.customerCity %>, <%= data.customerState %>, <%=
+                data.customerZipCode %></span
+              >
+              <span
+                style="
+                  font-size: 1.125rem !important;
+                  line-height: 1.75rem !important;
+                  font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                  word-break: break-all !important;
+                  word-wrap: break-word !important;
+                "
+              >
+                <%= data.customerPhone %></span
+              >
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 2rem !important;
+              display: flex !important;
+              flex-direction: row !important;
+            "
+          >
+            <span
+              style="
+                font-size: 1.125rem !important;
+                line-height: 1.75rem !important;
+                font-family:
+                  PT Sans Narrow,
+                  Arial Narrow,
+                  sans-serif !important;
+                width: 8rem !important;
+                min-width: 8rem !important;
+                font-weight: 700 !important;
+              "
+              >PAYMENT</span
+            >
+            <span
+              style="
+                font-size: 1.125rem !important;
+                line-height: 1.75rem !important;
+                font-family:
+                  PT Sans,
+                  Arial,
+                  sans-serif !important;
+                word-break: break-all !important;
+                word-wrap: break-word !important;
+              "
+            >
+              <%= data.paymentMethod %></span
+            >
+          </div>
+        </div>
+        <div
+          style="
+            display: flex !important;
+            flex-direction: column !important;
+            margin-top: 2.5rem !important;
+            border-top: 1px solid rgb(214, 211, 209) !important;
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+          "
+        >
+          <h3
+            style="
+              font-weight: 700 !important;
+              font-size: 1.5rem !important;
+              line-height: 2rem !important;
+              font-family:
+                PT Sans Narrow,
+                Arial Narrow,
+                sans-serif !important;
+              margin: 0 !important;
+            "
+          >
+            <%= data.totalNoOfItems %> | ITEMS
+          </h3>
+          <div
+            style="display: flex !important; flex-direction: column !important"
+          >
+          <% data.items.forEach((item) => { %>
+            <div
+              style="
+                flex-direction: row !important;
+                display: flex !important;
+                margin-top: 2rem !important;
+              "
+            >
+              <div
+                style="
+                  display: flex !important;
+                  flex-direction: column !important;
+                "
+              >
+                <h4
+                  style="
+                    font-weight: 700 !important;
+                    font-size: 1.25rem !important;
+                    line-height: 1.75rem !important;
+                    margin: 0;
+                    font-family:
+                      PT Sans,
+                      Arial,
+                      sans-serif !important;
+                    word-wrap: break-word !important;
+                  "
+                >
+                  <%= item.product.name %>
+                </h4>
+                <span
+                  style="
+                    font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                      PT Sans,
+                      Arial,
+                      sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important;
+                    margin-top: 0.25rem !important;
+                  "
+                >
+                  Color: <%= item.productVariant.attributes[0].value %></span
+                >
+                <span
+                  style="
+                    font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                      PT Sans,
+                      Arial,
+                      sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important;
+                    margin-top: 0.25rem !important;
+                  "
+                >
+                  Size: <%= item.productVariant.attributes[1].value %></span
+                >
+              </div>
+              <div
+                style="
+                  display: flex !important;
+                  flex-direction: column !important;
+                  margin-left: auto !important;
+                  margin-top: auto !important;
+                "
+              >
+                <span
+                  style="
+                    font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                      PT Sans,
+                      Arial,
+                      sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important;
+                    margin-top: 0.25rem !important;
+                    text-align: right !important;
+                    text-align:right !important;
+                  "
+                >
+                  x <%= item.quantity %></span
+                >
+                <span
+                  style="
+                    font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                      PT Sans,
+                      Arial,
+                      sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important;
+                    margin-top: 0.25rem !important;
+                    font-weight: 700;width: 4rem !important;
+                    text-align:right !important;
+                  "
+                >
+                  $<%= item.productVariant.regularPrice %></span
+                >
+              </div>
+            </div>
+            <% }); %>
+          </div>
+          <div style="
+            display: flex !important;
+            flex-direction: column !important;
+            margin-top: 2rem !important;
+            border-top: 1px solid rgb(214, 211, 209) !important;"
+            >
+            <div style="flex-direction: row !important;
+            display: flex !important;
+            margin-top: 1.5rem !important;">
+                <span style="font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important;">
+                    Items subtotal
+                </span>
+                <span style="font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important; margin-left:auto !important">
+                    $<%= data.itemsSubtotal.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                      }) %>
+                </span>    
+        </div>
+        <div style="flex-direction: row !important;
+        display: flex !important;
+        margin-top: 1.5rem !important;">
+            <span style="    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+                margin: 0 !important;
+                font-family:
+                PT Sans Narrow,
+                Arial,
+                sans-serif !important;
+                word-break: break-all !important;
+                word-wrap: break-word !important;
+                font-weight:700 !important">
+                SUBTOTAL
+            </span>
+            <span style="   font-size: 1.25rem !important;
+            line-height: 1.75rem !important;
+                        margin: 0 !important;
+                        font-family:
+                        PT Sans Narrow,
+                        Arial,
+                        sans-serif !important;
+                        word-break: break-all !important;
+                        word-wrap: break-word !important;
+                        font-weight:700 !important;
+                
+                margin-left:auto !important">
+                $<%= data.itemsSubtotal.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  }) %>
+            </span>    
+    </div>
+    <div style="flex-direction: row !important;
+            display: flex !important;
+            margin-top: 0.5rem !important;">
+                <span style="font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important;">
+                    Shipping
+                </span>
+                <span style="font-size: 1rem !important;
+                    margin: 0;
+                    font-family:
+                    PT Sans,
+                    Arial,
+                    sans-serif !important;
+                    word-break: break-all !important;
+                    word-wrap: break-word !important; 
+                    margin-left:auto !important; ">
+                    $<%= data.shippingAmount.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                      }) %>
+                </span>    
+        </div>
+        <div style="flex-direction: row !important;
+        display: flex !important;
+        margin-top: 1.5rem !important;">
+            <span style="    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+                margin: 0 !important;
+                font-family:
+                PT Sans Narrow,
+                Arial,
+                sans-serif !important;
+                word-break: break-all !important;
+                word-wrap: break-word !important;
+                font-weight:700 !important">
+                TOTAL
+            </span>
+            <span style="   font-size: 1.25rem !important;
+            line-height: 1.75rem !important;
+                        margin: 0 !important;
+                        font-family:
+                        PT Sans Narrow,
+                        Arial,
+                        sans-serif !important;
+                        word-break: break-all !important;
+                        word-wrap: break-word !important;
+                        font-weight:700 !important;
+                
+                margin-left:auto !important">
+                $<%= (data.itemsSubtotal + data.shippingAmount).toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  }) %>
+            </span>    
+    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="
+        width: 100%;
+        background-color: rgb(29, 78, 216) !important;
+        padding-top: 4rem !important;
+        padding-bottom: 3rem !important;
+        max-width: 896px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      "
+    >
+    <div style="flex-direction: column !important;
+        display: flex !important;">
+<a href="https://theanimalrepublic.com" style="margin-left:auto !important; margin-right:auto !important;">
+    <img
+            src="cid:logo@example.com"
+            alt="logo"
+            style="height: 4rem !important;border: 1px solid rgb(255,255,255) !important;"
+          />
+</a>
+<span style="font-size: 1rem !important;
+margin: 0;
+font-family:
+PT Sans,
+Arial,
+sans-serif !important;
+word-wrap: break-word !important;    text-align: center !important;    margin-top: 1.5rem !important;color: rgb(255,255,255) !important">Copyright © The Animal Republic. All rights reserved.</span>
+
+    </div>
+    </div>
+  </body>
+</html>

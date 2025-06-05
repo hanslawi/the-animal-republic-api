@@ -69,3 +69,6 @@ exports.updateOrder = async (req, res, next) => {
     next(err);
   }
 };
+
+require("dotenv").config();
+

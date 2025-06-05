@@ -10,9 +10,9 @@ const ProductVariant = require("../models/productVariant.model");
 exports.getSearchNavigationData = async (req, res, next) => {
   try {
     // get CATEGORIES
-    const categories = await Category.find().select(
-      "id name slug bannerColor bannerImagesFileName"
-    );
+    const categories = await Category.find()
+      .select("id name slug bannerColor bannerImagesFileName")
+      .sort({ _id: 1 });
 
     // init searchNavigationData object
     const searchNavigationData = {};
@@ -41,11 +41,14 @@ exports.getSearchNavigationData = async (req, res, next) => {
         // get SUBCATEGORIES of current CATEGORY
         const subcategories = await SubCategory.find({
           category: category.id,
-        }).select("name slug bannerColor bannerImageFileName");
+        })
+          .select("name slug bannerColor bannerImageFileName")
+          .sort({ _id: 1 });
 
         // get featured PROUDCTS of current CATEGORY
         const featuredProducts = await Product.find({
           category: category.id,
+          featured: true,
         }).select(
           "attributes name slug regularPrice images themeColor videoFilename"
         );
@@ -115,6 +118,8 @@ exports.getHomeData = async (req, res, next) => {
 exports.getCatalogDataOfCategory = async (req, res, next) => {
   try {
     const { categorySlug } = req.params;
+    const page = req.query.page || 1;
+    const limit = 16;
 
     // get CATEGORY by route param categorySlug
     const category = await Category.findOne({ slug: categorySlug }).select(
@@ -124,15 +129,28 @@ exports.getCatalogDataOfCategory = async (req, res, next) => {
     // if CATEGORY with that slug is not found, throw AppError
     if (!category) return next(new AppError("Category not found.", 404));
 
+    // get total number of products of category
+    const productsCount = await Product.countDocuments({
+      category: category.id,
+    });
+
+    // get total no of pages
+    const pages = Math.ceil(productsCount / limit);
+
     // get products of category
-    const products = await Product.find({ category: category.id });
+    const products = await Product.find({ category: category.id })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort("field -dateCreated");
 
     // init catalogData object
     const catalogData = {};
 
     const subcategories = await SubCategory.find({
       category: category.id,
-    }).select("name slug bannerColor bannerImageFileName");
+    })
+      .select("name slug bannerColor bannerImageFileName")
+      .sort({ _id: 1 });
 
     catalogData.category = {
       id: category.id,
@@ -142,6 +160,7 @@ exports.getCatalogDataOfCategory = async (req, res, next) => {
       bannerColor: category.bannerColor,
       subcategories: subcategories,
       products: products,
+      totalPages: pages,
     };
 
     // send JSON response with catalogData
@@ -154,6 +173,8 @@ exports.getCatalogDataOfCategory = async (req, res, next) => {
 exports.getCatalogDataOfSubcategory = async (req, res, next) => {
   try {
     const { categorySlug, subcategorySlug } = req.params;
+    const page = req.query.page || 1;
+    const limit = 16;
 
     // get CATEGORY by route param categorySlug
     const category = await Category.findOne({ slug: categorySlug }).select(
@@ -172,18 +193,32 @@ exports.getCatalogDataOfSubcategory = async (req, res, next) => {
     // if SUBCATEGORY with that slug and category id is not found, throw AppError
     if (!subcategory) return next(new AppError("Subcategory not found.", 404));
 
+    // get total number of products of subcategory
+    const productsCount = await Product.countDocuments({
+      category: category.id,
+      subcategory: subcategory.id,
+    });
+
+    // get total no of pages
+    const pages = Math.ceil(productsCount / limit);
+
     // get products of category
     const products = await Product.find({
       category: category.id,
       subcategory: subcategory.id,
-    });
+    })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .sort("field -dateCreated");
 
     // init catalogData object
     const catalogData = {};
 
     const subcategories = await SubCategory.find({
       category: category.id,
-    }).select("name slug bannerColor bannerImageFileName");
+    })
+      .select("name slug bannerColor bannerImageFileName")
+      .sort({ _id: 1 });
 
     catalogData.category = {
       id: category.id,
@@ -194,6 +229,7 @@ exports.getCatalogDataOfSubcategory = async (req, res, next) => {
       subcategories: subcategories,
       subcategory: subcategory,
       products: products,
+      totalPages: pages,
     };
 
     // send JSON response with catalogData
@@ -217,6 +253,16 @@ exports.getProductData = async (req, res, next) => {
     // get product variants by product id
     const productVariants = await ProductVariant.find({ product: product.id });
 
+    const collection = await Product.find({
+      "collections.0": product.collections[0],
+    });
+
+    const randomProducts = await Product.aggregate([
+      { $match: { subcategory: product.subcategory._id } },
+    ]).sample(2);
+
+    const recommendedProducts = [...collection, ...randomProducts];
+
     const productData = {};
 
     productData.product = {
@@ -230,6 +276,9 @@ exports.getProductData = async (req, res, next) => {
       category: {
         name: product.category.name,
         slug: product.category.slug,
+        productDescription: product.category.productDescription,
+        productDetails: product.category.productDetails,
+        productSizeChart: product.category.productSizeChart,
       },
       subcategory: {
         name: product.subcategory.name,
@@ -237,6 +286,8 @@ exports.getProductData = async (req, res, next) => {
       },
       productVariants: productVariants,
       themeColor: product.themeColor,
+      recommendation: recommendedProducts,
+      mainImageIndex: product.mainImageIndex,
     };
 
     res.status(200).json({ data: productData });

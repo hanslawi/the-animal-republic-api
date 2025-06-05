@@ -27,6 +27,7 @@ const productSchema = mongoose.Schema({
   attributes: [{ name: String, values: [String] }],
   collections: [String],
   images: [{ type: { altText: String, fileURL: String } }],
+  mainImageIndex: { type: Number },
   backgroundImage: { type: { altText: String, fileURL: String } },
   videoShowcase: { type: { altText: String, fileURL: String } },
   tags: [String],
@@ -38,6 +39,10 @@ const productSchema = mongoose.Schema({
   shippingClass: { type: mongoose.Schema.ObjectId, ref: "ShippingClass" },
   themeColor: { type: String, default: "#E7E5E4" },
   videoFilename: { type: String },
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies
@@ -68,7 +73,7 @@ productSchema.method(
 
     // iterate values
     await Promise.all(
-      values1.map(async (el1) => {
+      await values1.map(async (el1) => {
         // get second element of attributes
         const secondAttribute = this.attributes[1];
 
