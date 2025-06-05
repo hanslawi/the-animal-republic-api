@@ -283,7 +283,7 @@ const client = new Client({
     oAuthClientSecret: process.env.PAYPAL_CLIENT_SECRET,
   },
   timeout: 0,
-  environment: Environment.Sandbox,
+  environment: Environment.Production,
   logging: {
     logLevel: LogLevel.Info,
     logRequest: { logBody: true },
@@ -460,10 +460,10 @@ exports.createOrder = async (cart) => {
   };
 
   try {
-    console.log('creating order')
+    console.log("creating order");
     const { body, ...httpResponse } =
       await ordersController.createOrder(collect);
-console.log('order created.');
+    console.log("order created.");
     // Get more response info...
     // const { statusCode, headers } = httpResponse;
     return {
