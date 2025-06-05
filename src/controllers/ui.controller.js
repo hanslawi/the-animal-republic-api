@@ -77,8 +77,6 @@ exports.getHomeData = async (req, res, next) => {
       .populate("swiperSliders.product")
       .select("swiperSliders id name slug bannerColor bannerImagesFileName")
       .sort({ _id: 1 });
-
-    console.log(categories);
     // init homeData object
     const homeData = {};
 
