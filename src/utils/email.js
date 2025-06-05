@@ -27,9 +27,14 @@ async function sendEmail(to, subject, template, data) {
       html,
       attachments: [
         {
-          filename: "logo.png",
+          filename: "receipt.png",
           path: "./src/assets/receipt.png",
           cid: "receipt@example.com", // same cid value as in the html img src
+        },
+        {
+          filename: "logo.png",
+          path: "./src/assets/logo.png",
+          cid: "logo@example.com", // same cid value as in the html img src
         },
       ],
     };
