@@ -40,11 +40,7 @@ router.post("/paypal/orders/:orderID/capture", async (req, res) => {
 
 // PayPal webhook
 
-router.post(
-  "/paypal/webhook",
-  express.raw({ type: "application/json" }),
-  paymentController.paypalWebhook
-);
+router.post("/paypal/webhook", paymentController.paypalWebhook);
 
 // STRIPE
 
