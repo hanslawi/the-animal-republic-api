@@ -460,9 +460,10 @@ exports.createOrder = async (cart) => {
   };
 
   try {
+    console.log('creating order')
     const { body, ...httpResponse } =
       await ordersController.createOrder(collect);
-
+console.log('order created.');
     // Get more response info...
     // const { statusCode, headers } = httpResponse;
     return {
