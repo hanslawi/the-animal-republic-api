@@ -279,10 +279,8 @@ const {
 
 const client = new Client({
   clientCredentialsAuthCredentials: {
-    oAuthClientId:
-      "ASxhsxYTagZUq_PceVOn5jOrid6aEwxoaXJq97heEu81xG7QS-t3YDB7w9jgVlliHvM0WuATankrT4p2",
-    oAuthClientSecret:
-      "EBj_vKomSfVFYmtMwU3jheC8wlyGZ7xIMxiHyyd3oQHlwIOiOZ0QwvlcGDpl9u2YxT_uuunqArZbX7Fw",
+    oAuthClientId: process.env.PAYPAL_CLIENT_ID,
+    oAuthClientSecret: process.env.PAYPAL_CLIENT_SECRET,
   },
   // timeout: 0,
   environment: Environment.Sandbox,
@@ -507,13 +505,12 @@ exports.captureOrder = async (orderID) => {
 
 exports.paypalWebhook = async (req, res, next) => {
   try {
-    const { event_type, resource } = req.body;
+    const { event_type } = req.body;
+
     console.log(req.body);
 
     if (event_type === "PAYMENT.CAPTURE.COMPLETED") {
-      
     }
-
   } catch (error) {
     throw new Error(error.message);
   }
