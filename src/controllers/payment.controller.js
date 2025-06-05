@@ -238,6 +238,7 @@ exports.stripeWebhook = async (req, res, next) => {
         paymentMethod: order.paymentMethod,
         orderNo: order._id.toString(),
         totalNoOfItems: totalNoOfItems,
+        items: order.items,
       };
 
       console.log(data);
@@ -457,6 +458,7 @@ exports.createOrder = async (cart) => {
     paymentMethod: _order.paymentMethod,
     orderNo: _order._id.toString(),
     totalNoOfItems: totalNoOfItems,
+    items: items,
   };
 
   console.log(data);
