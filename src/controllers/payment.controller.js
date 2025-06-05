@@ -463,6 +463,8 @@ exports.createOrder = async (cart) => {
     orderNo: _order._id.toString(),
     totalNoOfItems: totalNoOfItems,
     items: _order.items,
+    itemsSubtotal: _order.itemsSubtotal,
+    shippingAmount: _order.shippingAmount,
   };
 
   console.log(data);
