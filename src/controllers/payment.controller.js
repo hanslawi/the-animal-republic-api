@@ -292,6 +292,8 @@ const client = new Client({
   // },
 });
 
+console.log({ ...client });
+
 console.log(process.env.PAYPAL_CLIENT_ID, process.env.PAYPAL_CLIENT_SECRET);
 
 const ordersController = new OrdersController(client);
