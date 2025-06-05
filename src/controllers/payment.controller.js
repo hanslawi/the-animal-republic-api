@@ -425,8 +425,7 @@ exports.createOrder = async (cart) => {
     vatAmount: 0,
   });
 
-  console.log(itemsSubtotalAccumulator, shippingFeeAccumulator);
-  console.log(lineItems);
+  console.log(order);
 
   const collect = {
     body: {
