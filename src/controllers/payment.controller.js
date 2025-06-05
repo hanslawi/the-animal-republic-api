@@ -524,55 +524,55 @@ exports.captureOrder = async (orderID) => {
 
 exports.paypalWebhook = async (req, res, next) => {
   try {
-    const { event_type } = req.body;
+    const { event_type, resource } = req.body;
 
     console.log(req.body);
 
     if (event_type === "PAYMENT.CAPTURE.COMPLETED") {
-      // // Update order status of checkoutSession.orderId to "Processing"
-      // const _order = await Order.findByIdAndUpdate(
-      //   order._id.toString(),
-      //   { status: "Processing" },
-      //   {
-      //     new: true,
-      //     runValidators: true,
-      //   }
-      // )
-      //   .populate("items.product")
-      //   .populate("items.productVariant");
-      // // const _order = await Order.findById("6840ab55adae295c9426c0ad")
-      // // .populate("items.product")
-      // // .populate("items.productVariant");
-      // const totalNoOfItems = _order.items.reduce((accumulator, item) => {
-      //   const _accumulator = accumulator + item.quantity;
-      //   return _accumulator;
-      // }, 0);
-      // const data = {
-      //   customerEmailAddress: _order.customerEmailAddress,
-      //   customerFirstName: _order.customerFirstName,
-      //   customerLastName: _order.customerLastName,
-      //   customerAddressLine1: _order.customerAddressLine1,
-      //   customerAddressLine2: _order.customerAddressLine2,
-      //   customerCity: _order.customerCity,
-      //   customerState: _order.customerState,
-      //   customerZipCode: _order.customerZipCode,
-      //   customerPhone: _order.customerPhone,
-      //   paymentMethod: _order.paymentMethod,
-      //   orderNo: _order._id.toString(),
-      //   totalNoOfItems: totalNoOfItems,
-      //   items: _order.items,
-      //   itemsSubtotal: _order.itemsSubtotal,
-      //   shippingAmount: _order.shippingAmount,
-      // };
-      // console.log(data);
-      // email.sendEmail(
-      //   "realhanslawi@gmail.com",
-      //   "Thank you for your order!",
-      //   "invoiceReceipt",
-      //   {
-      //     data: data,
-      //   }
-      // );
+      // Update order status of checkoutSession.orderId to "Processing"
+      const _order = await Order.findByIdAndUpdate(
+        resource.invoice_id,
+        { status: "Processing" },
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+        .populate("items.product")
+        .populate("items.productVariant");
+      // const _order = await Order.findById("6840ab55adae295c9426c0ad")
+      // .populate("items.product")
+      // .populate("items.productVariant");
+      const totalNoOfItems = _order.items.reduce((accumulator, item) => {
+        const _accumulator = accumulator + item.quantity;
+        return _accumulator;
+      }, 0);
+      const data = {
+        customerEmailAddress: _order.customerEmailAddress,
+        customerFirstName: _order.customerFirstName,
+        customerLastName: _order.customerLastName,
+        customerAddressLine1: _order.customerAddressLine1,
+        customerAddressLine2: _order.customerAddressLine2,
+        customerCity: _order.customerCity,
+        customerState: _order.customerState,
+        customerZipCode: _order.customerZipCode,
+        customerPhone: _order.customerPhone,
+        paymentMethod: _order.paymentMethod,
+        orderNo: _order._id.toString(),
+        totalNoOfItems: totalNoOfItems,
+        items: _order.items,
+        itemsSubtotal: _order.itemsSubtotal,
+        shippingAmount: _order.shippingAmount,
+      };
+      console.log(data);
+      email.sendEmail(
+        "realhanslawi@gmail.com",
+        "Thank you for your order!",
+        "invoiceReceipt",
+        {
+          data: data,
+        }
+      );
     }
   } catch (error) {
     throw new Error(error.message);
