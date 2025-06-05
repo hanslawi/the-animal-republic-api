@@ -427,6 +427,49 @@ exports.createOrder = async (cart) => {
     vatAmount: 0,
   });
 
+  // Update order status of checkoutSession.orderId to "Processing"
+  const _order = await Order.findByIdAndUpdate(
+    order._id.toString(),
+    { status: "Processing" },
+    {
+      new: true,
+      runValidators: true,
+    }
+  )
+    .populate("items.product")
+    .populate("items.productVariant");
+
+  const totalNoOfItems = _order.items.reduce((accumulator, item) => {
+    const _accumulator = accumulator + item.quantity;
+    return _accumulator;
+  }, 0);
+
+  const data = {
+    customerEmailAddress: _order.customerEmailAddress,
+    customerFirstName: _order.customerFirstName,
+    customerLastName: _order.customerLastName,
+    customerAddressLine1: _order.customerAddressLine1,
+    customerAddressLine2: _order.customerAddressLine2,
+    customerCity: _order.customerCity,
+    customerState: _order.customerState,
+    customerZipCode: _order.customerZipCode,
+    customerPhone: _order.customerPhone,
+    paymentMethod: _order.paymentMethod,
+    orderNo: _order._id.toString(),
+    totalNoOfItems: totalNoOfItems,
+  };
+
+  console.log(data);
+
+  email.sendEmail(
+    "realhanslawi@gmail.com",
+    "Thank you for your order!",
+    "invoiceReceipt",
+    {
+      data: data,
+    }
+  );
+
   const collect = {
     body: {
       intent: "CAPTURE",
