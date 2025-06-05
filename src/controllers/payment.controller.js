@@ -291,6 +291,8 @@ const client = new Client({
   },
 });
 
+console.log(client);
+
 const ordersController = new OrdersController(client);
 const paymentsController = new PaymentsController(client);
 
