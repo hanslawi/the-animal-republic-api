@@ -6,11 +6,12 @@ const ejs = require("ejs");
 async function sendEmail(to, subject, template, data) {
   try {
     const transport = nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
+      host: "smtpout.secureserver.net",
+      port: 465,
+      secure: true,
       auth: {
-        user: "570e4b61f13745",
-        pass: "56b08308c8f255",
+        user: "admin@theanimalrepublic.com",
+        pass: "theanimalrepublic",
       },
     });
 

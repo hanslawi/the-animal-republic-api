@@ -43,6 +43,10 @@ const productSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  itemsSold: {
+    type: Number,
+    default: 0
+  }
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies

@@ -5,11 +5,12 @@ const ejs = require("ejs");
 const Order = require("./src/models/order.model");
 
 const transport = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
+  host: "smtpout.secureserver.net",
+  port: 465,
+  secure: true,
   auth: {
-    user: "570e4b61f13745",
-    pass: "56b08308c8f255",
+    user: "admin@theaimalrepublic.com",
+    pass: "theanimalrepublic",
   },
 });
 
@@ -42,24 +43,3 @@ async function sendEmail(to, subject, template, data) {
     console.log("Error: ", err);
   }
 }
-
-(async () => {
-  try {
-    const order = await Order.findById("683ea774083d1879dc77cbff")
-      .populate("items.product")
-      .populate("items.productVariant");
-
-    sendEmail(
-      "realhanslawi@gmail.com",
-      "Thank you for your order!",
-      "invoiceReceipt",
-      {
-        order: order,
-      }
-    );
-  } catch (err) {
-    console.log(err);
-  }
-})();
-
-// sendEmail('email@domain.com', 'Dynamic Email Template with EJS', 'anotherMessage', { accessCode: '123456' })

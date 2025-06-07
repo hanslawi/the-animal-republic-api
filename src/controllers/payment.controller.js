@@ -449,15 +449,19 @@ exports.createOrder = async (cart) => {
             currencyCode: "USD",
             value: (
               itemsSubtotalAccumulator + shippingFeeAccumulator
-            ).toString(),
+            ).toLocaleString("en-US", { minimumFractionDigits: 2 }),
             breakdown: {
               itemTotal: {
                 currencyCode: "USD",
-                value: itemsSubtotalAccumulator.toString(),
+                value: itemsSubtotalAccumulator.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                }),
               },
               shipping: {
                 currencyCode: "USD",
-                value: shippingFeeAccumulator.toString(),
+                value: shippingFeeAccumulator.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                }),
               },
             },
           },

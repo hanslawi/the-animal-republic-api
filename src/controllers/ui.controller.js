@@ -49,9 +49,7 @@ exports.getSearchNavigationData = async (req, res, next) => {
         const featuredProducts = await Product.find({
           category: category.id,
           featured: true,
-        }).select(
-          "attributes name slug regularPrice images themeColor videoFilename"
-        );
+        });
 
         searchNavigationData.categories[index] = {
           ...searchNavigationData.categories[index],
@@ -305,12 +303,12 @@ exports.getCartData = async (req, res, next) => {
     // get product and product variant of item
     await Promise.all(
       items.map(async (item) => {
-        const product = await Product.findOne({ _id: item.id }).select(
+        const product = await Product.findById(item.id).select(
           "_id name slug themeColor"
         );
-        const productVariant = await ProductVariant.findOne({
-          _id: item.productVariant._id,
-        }).select("product attributes regularPrice images");
+        const productVariant = await ProductVariant.findById(
+          item.productVariant._id
+        ).select("product attributes regularPrice images");
 
         cartData.items = [
           ...cartData.items,

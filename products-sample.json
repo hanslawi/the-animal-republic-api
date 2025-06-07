@@ -1,6 +1,6 @@
 [
   {
-    "name": "Panda Riding Dragon T-Shirt",
+    "name": "French Bulldog Pocket T-Shirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -10,30 +10,31 @@
       },
       {
         "name": "Size",
-        "values": ["XS", "S", "M", "L", "2XL", "3XL", "4XL", "5XL"]
+        "values": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"]
       }
     ],
-    "collections": ["panda-riding-dragon"],
+    "collections": ["french-bulldog-pocket"],
     "images": [
       {
-        "altText": "Panda Riding Dragon T-Shirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/175/175631907ccedc5148d52d4b062f4922_preview.png"
+        "altText": "French Bulldog Pocket T-Shirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/e7d/e7df6cde3dfe09e08666f0b44f75e52e_preview.png"
       },
       {
-        "altText": "Panda Riding Dragon T-Shirt White",
-        "fileURL": "https://files.cdn.printful.com/files/5c1/5c1b989ce20f077ae94df594ed3bc0b2_preview.png"
+        "altText": "French Bulldog Pocket T-Shirt White",
+        "fileURL": "https://files.cdn.printful.com/files/b4a/b4a8a5b4ae72b6b348986ca14d54bf11_preview.png"
       }
     ],
     "mainImageIndex": 1,
     "tags": [],
     "category": "676909a85adea2037741de0a",
-    "subcategory": "67690fee5adea2037741de47",
+    "subcategory": "67690d085adea2037741de19",
     "regularPrice": 24.99,
-    "shippingClass": "678096717ac75f26337a30e7",
-    "themeColor": "#D67B64"
+    "themeColor": "#B0A9A3",
+    "itemsSold": 1,
+     "shippingClass": "678096717ac75f26337a30e7"
   },
   {
-    "name": "Panda Riding Dragon Hoodie",
+    "name": "French Bulldog Pocket Hoodie",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -46,27 +47,27 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["panda-riding-dragon"],
+    "collections": ["french-bulldog-pocket"],
     "images": [
       {
-        "altText": "Panda Riding Dragon Hoodie Black",
-        "fileURL": "https://files.cdn.printful.com/files/209/209fe51727642643b3b5b51d3582c10b_preview.png"
+        "altText": "French Bulldog Pocket Hoodie Black",
+        "fileURL": "https://files.cdn.printful.com/files/d32/d32e623614a42e381b299e4277315ff7_preview.png"
       },
       {
-        "altText": "Panda Riding Dragon Hoodie White",
-        "fileURL": "https://files.cdn.printful.com/files/dd0/dd0e56a499a620bd096096bd4ba781a0_preview.png"
+        "altText": "French Bulldog Pocket Hoodie White",
+        "fileURL": "https://files.cdn.printful.com/files/48d/48d5c86872f19733fb8147109dbaf97e_preview.png"
       }
     ],
     "mainImageIndex": 1,
     "tags": [],
     "category": "676909f75adea2037741de0c",
-    "subcategory": "676910205adea2037741de49",
+    "subcategory": "67690d1b5adea2037741de1b",
     "regularPrice": 42.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#D67B64"
+    "themeColor": "#B0A9A3"
   },
   {
-    "name": "Panda Riding Dragon Sweatshirt",
+    "name": "French Bulldog Pocket Sweatshirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -79,23 +80,23 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["panda-riding-dragon"],
+    "collections": ["french-bulldog-pocket"],
     "images": [
       {
-        "altText": "Panda Riding Dragon Sweatshirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/f58/f58bf53e9b610efa115baee43b7ee1f1_preview.png"
+        "altText": "French Bulldog Pocket Sweatshirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/53c/53c2415d3e1c8b546e9cd65f65af0483_preview.png"
       },
       {
-        "altText": "Panda Riding Dragon Sweatshirt White",
-        "fileURL": "https://files.cdn.printful.com/files/094/09470993afe71dc638271f1789da9a1b_preview.png"
+        "altText": "French Bulldog Pocket Sweatshirt White",
+        "fileURL": "https://files.cdn.printful.com/files/0ab/0abea8b45acb7403cd8493a20aa7470f_preview.png"
       }
     ],
     "mainImageIndex": 1,
     "tags": [],
     "category": "67690a545adea2037741de0e",
-    "subcategory": "6769102e5adea2037741de4b",
+    "subcategory": "67690d2d5adea2037741de1d",
     "regularPrice": 38.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#D67B64"
+    "themeColor": "#B0A9A3"
   }
 ]

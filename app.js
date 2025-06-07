@@ -42,49 +42,6 @@ app.get("/", (req, res) => {
   res.status(200);
 });
 
-
-// const path = require("path");
-// app.use(express.static("public"));
-// set the view engine to ejs
-// app.set("view engine", "ejs");
-// app.set("views", path.join(__dirname, "src", "views"));
-// const Order = require("./src/models/order.model");
-// const ejs = require("ejs");
-// app.get("/email", async (req, res) => {
-//   const order = await Order.findById("6840ab55adae295c9426c0ad")
-//     .populate("items.product")
-//     .populate("items.productVariant");
-
-//   const totalNoOfItems = order.items.reduce((accumulator, item) => {
-//     const _accumulator = accumulator + item.quantity;
-//     return _accumulator;
-//   }, 0);
-
-//   console.log(order);
-
-//   const data = {
-//     customerEmailAddress: order.customerEmailAddress,
-//     customerFirstName: order.customerFirstName,
-//     customerLastName: order.customerLastName,
-//     customerAddressLine1: order.customerAddressLine1,
-//     customerAddressLine2: order.customerAddressLine2,
-//     customerCity: order.customerCity,
-//     customerState: order.customerState,
-//     customerZipCode: order.customerZipCode,
-//     customerPhone: order.customerPhone,
-//     paymentMethod: order.paymentMethod,
-//     orderNo: order._id.toString(),
-//     totalNoOfItems: totalNoOfItems,
-//     items: order.items,
-//     itemsSubtotal: order.itemsSubtotal,
-//     shippingAmount: order.shippingAmount,
-//   };
-
-//   console.log("/email");
-
-//   res.status(200).render("invoiceReceipt", { data: data });
-// });
-
 // error-handling middleware
 app.use((err, req, res, next) => {
   // PROD
