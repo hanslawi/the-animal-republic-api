@@ -107,6 +107,30 @@ exports.getShippingFeesOfCountry = async (req, res, next) => {
   }
 };
 
+exports.updateShippingFee = async (req, res, next) => {
+  try {
+    // find SHIPPING FEE by ID and update
+    const updatedShippingFee = await ShippingFee.findByIdAndUpdate(
+      req.params.shippingFeeId,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    // if SHIPPING FEE is not found, throw AppError to next middleware
+    if (!updatedShippingFee) return next(new AppError("Shipping Fee not found", 404));
+
+    // send JSON response with updated ShippingFee
+    res
+      .status(200)
+      .json({ status: "SUCCESS", data: { shippingFee: updatedShippingFee } });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.calculateShippingFee = async (req, res, next) => {
   try {
     // get items from cart

@@ -24,13 +24,15 @@ router.post(
   authController.protect,
   shippingController.addShippingFee
 );
+router.patch(
+  "/shippingfees/:shippingFeeId",
+  authController.protect,
+  shippingController.updateShippingFee
+);
 router.get(
   "/:countryCode/shippingfees",
   shippingController.getShippingFeesOfCountry
 );
-router.post(
-  "/calculateshippingfee",
-  shippingController.calculateShippingFee
-);
+router.post("/calculateshippingfee", shippingController.calculateShippingFee);
 
 module.exports = router;

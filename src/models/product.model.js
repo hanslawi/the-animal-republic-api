@@ -45,8 +45,9 @@ const productSchema = mongoose.Schema({
   },
   itemsSold: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
+  customerGallery: [mongoose.SchemaTypes.Mixed],
 });
 
 // slugify name eg. Premium Hoodies = premium-hoodies

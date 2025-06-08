@@ -284,6 +284,7 @@ exports.getProductData = async (req, res, next) => {
       themeColor: product.themeColor,
       recommendation: recommendedProducts,
       mainImageIndex: product.mainImageIndex,
+      customerGallery: product.customerGallery,
     };
 
     res.status(200).json({ data: productData });
