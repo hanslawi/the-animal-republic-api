@@ -42,7 +42,9 @@ exports.getSearchNavigationData = async (req, res, next) => {
         const subcategories = await SubCategory.find({
           category: category.id,
         })
-          .select("name slug bannerColor bannerImageFileName")
+          .select(
+            "name slug bannerColor bannerImageFileName bannerBackgorundFileName"
+          )
           .sort({ _id: 1 });
 
         // get featured PROUDCTS of current CATEGORY
@@ -145,7 +147,7 @@ exports.getCatalogDataOfCategory = async (req, res, next) => {
     const subcategories = await SubCategory.find({
       category: category.id,
     })
-      .select("name slug bannerColor bannerImageFileName")
+      .select("name slug bannerColor bannerImageFileName bannerBackgorundFileName")
       .sort({ _id: 1 });
 
     catalogData.category = {
@@ -213,7 +215,9 @@ exports.getCatalogDataOfSubcategory = async (req, res, next) => {
     const subcategories = await SubCategory.find({
       category: category.id,
     })
-      .select("name slug bannerColor bannerImageFileName")
+      .select(
+        "name slug bannerColor bannerImageFileName bannerBackgorundFileName"
+      )
       .sort({ _id: 1 });
 
     catalogData.category = {

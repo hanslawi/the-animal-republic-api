@@ -43,3 +43,5 @@ async function sendEmail(to, subject, template, data) {
     console.log("Error: ", err);
   }
 }
+
+// sendEmail('email@domain.com', 'Dynamic Email Template with EJS', 'anotherMessage', { accessCode: '123456' })
