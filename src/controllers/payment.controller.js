@@ -10,6 +10,7 @@ const ShippingFee = require("../models/shippingFee.model");
 const Product = require("../models/product.model");
 const ProductVariant = require("../models/productVariant.model");
 const Order = require("../models/order.model");
+const Referral = require("../models/referral.model");
 
 // import utils
 const email = require("../utils/email");
@@ -123,27 +124,58 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
 
   // get payment method from req body
 
-  const { paymentMethod } = req.body;
+  const { paymentMethod, referralCode } = req.body;
 
-  const order = await Order.create({
-    customerEmailAddress: emailAddress,
-    customerCountry: country.code,
-    customerFirstName: firstName,
-    customerLastName: lastName,
-    customerAddressLine1: addressLine1,
-    customerAddressLine2: addressLine2,
-    customerCity: city,
-    customerState: state,
-    customerZipCode: zipCode,
-    customerPhone: phone,
-    paymentMethod: paymentMethod,
-    items: orderItems,
-    itemsSubtotal: itemsSubtotalAccumulator,
-    shippingAmount: shippingFeeAccumulator,
-    vatAmount: 0,
-  });
+  let referral;
 
-  console.log(req.get("origin"));
+  if (referralCode) {
+    referral = await Order.findOne({ referralCode: referralCode });
+  }
+
+  let order;
+
+  console.log(referralCode, referral);
+
+  if (referral) {
+    order = await Order.create({
+      customerEmailAddress: emailAddress,
+      customerCountry: country.code,
+      customerFirstName: firstName,
+      customerLastName: lastName,
+      customerAddressLine1: addressLine1,
+      customerAddressLine2: addressLine2,
+      customerCity: city,
+      customerState: state,
+      customerZipCode: zipCode,
+      customerPhone: phone,
+      paymentMethod: paymentMethod,
+      items: orderItems,
+      itemsSubtotal: itemsSubtotalAccumulator,
+      shippingAmount: shippingFeeAccumulator,
+      vatAmount: 0,
+      referral: referral,
+    });
+  } else {
+    order = await Order.create({
+      customerEmailAddress: emailAddress,
+      customerCountry: country.code,
+      customerFirstName: firstName,
+      customerLastName: lastName,
+      customerAddressLine1: addressLine1,
+      customerAddressLine2: addressLine2,
+      customerCity: city,
+      customerState: state,
+      customerZipCode: zipCode,
+      customerPhone: phone,
+      paymentMethod: paymentMethod,
+      items: orderItems,
+      itemsSubtotal: itemsSubtotalAccumulator,
+      shippingAmount: shippingFeeAccumulator,
+      vatAmount: 0,
+    });
+  }
+
+  // console.log(req.get("origin"));
 
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
@@ -420,25 +452,58 @@ exports.createOrder = async (cart) => {
 
   // get payment method from req body
 
-  const { paymentMethod } = cart;
+  const { paymentMethod, referralCode } = cart;
 
-  const order = await Order.create({
-    customerEmailAddress: emailAddress,
-    customerCountry: country.code,
-    customerFirstName: firstName,
-    customerLastName: lastName,
-    customerAddressLine1: addressLine1,
-    customerAddressLine2: addressLine2,
-    customerCity: city,
-    customerState: state,
-    customerZipCode: zipCode,
-    customerPhone: phone,
-    paymentMethod: paymentMethod,
-    items: orderItems,
-    itemsSubtotal: itemsSubtotalAccumulator,
-    shippingAmount: shippingFeeAccumulator,
-    vatAmount: 0,
-  });
+  let referral;
+
+  if (referralCode) {
+    referral = await Order.findOne({ referralCode: referralCode });
+  }
+
+  let order;
+
+  console.log(referralCode, referral);
+
+  if (referral) {
+    console.log("Created order with referral.");
+    order = await Order.create({
+      customerEmailAddress: emailAddress,
+      customerCountry: country.code,
+      customerFirstName: firstName,
+      customerLastName: lastName,
+      customerAddressLine1: addressLine1,
+      customerAddressLine2: addressLine2,
+      customerCity: city,
+      customerState: state,
+      customerZipCode: zipCode,
+      customerPhone: phone,
+      paymentMethod: paymentMethod,
+      items: orderItems,
+      itemsSubtotal: itemsSubtotalAccumulator,
+      shippingAmount: shippingFeeAccumulator,
+      vatAmount: 0,
+      referral: referral,
+    });
+  } else {
+    console.log("Created order with no referral.");
+    order = await Order.create({
+      customerEmailAddress: emailAddress,
+      customerCountry: country.code,
+      customerFirstName: firstName,
+      customerLastName: lastName,
+      customerAddressLine1: addressLine1,
+      customerAddressLine2: addressLine2,
+      customerCity: city,
+      customerState: state,
+      customerZipCode: zipCode,
+      customerPhone: phone,
+      paymentMethod: paymentMethod,
+      items: orderItems,
+      itemsSubtotal: itemsSubtotalAccumulator,
+      shippingAmount: shippingFeeAccumulator,
+      vatAmount: 0,
+    });
+  }
 
   const collect = {
     body: {

@@ -1,6 +1,6 @@
 [
   {
-    "name": "French Bulldog Pocket T-Shirt",
+    "name": "Elephant Clock T-Shirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -13,28 +13,27 @@
         "values": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"]
       }
     ],
-    "collections": ["french-bulldog-pocket"],
+    "collections": ["elephant-clock"],
     "images": [
       {
-        "altText": "French Bulldog Pocket T-Shirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/e7d/e7df6cde3dfe09e08666f0b44f75e52e_preview.png"
+        "altText": "Elephant Clock T-Shirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/ccf/ccfabc9116a15e3371570de09c804cc7_preview.png"
       },
       {
-        "altText": "French Bulldog Pocket T-Shirt White",
-        "fileURL": "https://files.cdn.printful.com/files/b4a/b4a8a5b4ae72b6b348986ca14d54bf11_preview.png"
+        "altText": "Elephant Clock T-Shirt White",
+        "fileURL": "https://files.cdn.printful.com/files/7dd/7dde305cc9543723dfcb3e90d0526a5f_preview.png"
       }
     ],
-    "mainImageIndex": 1,
+    "mainImageIndex": 0,
     "tags": [],
     "category": "676909a85adea2037741de0a",
-    "subcategory": "67690d085adea2037741de19",
+    "subcategory": "684a2f2460211557ee236611",
     "regularPrice": 24.99,
-    "themeColor": "#B0A9A3",
-    "itemsSold": 1,
+    "themeColor": "#F4CACD",
      "shippingClass": "678096717ac75f26337a30e7"
   },
   {
-    "name": "French Bulldog Pocket Hoodie",
+    "name": "Elephant Clock Hoodie",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -47,27 +46,27 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["french-bulldog-pocket"],
+    "collections": ["elephant-clock"],
     "images": [
       {
-        "altText": "French Bulldog Pocket Hoodie Black",
-        "fileURL": "https://files.cdn.printful.com/files/d32/d32e623614a42e381b299e4277315ff7_preview.png"
+        "altText": "Elephant Clock Hoodie Black",
+        "fileURL": "https://files.cdn.printful.com/files/d65/d655ec8c5120bcfd43c65cd75ed8bb54_preview.png"
       },
       {
-        "altText": "French Bulldog Pocket Hoodie White",
-        "fileURL": "https://files.cdn.printful.com/files/48d/48d5c86872f19733fb8147109dbaf97e_preview.png"
+        "altText": "Elephant Clock Hoodie White",
+        "fileURL": "https://files.cdn.printful.com/files/66a/66a5700e01bff515dbb014859df1944f_preview.png"
       }
     ],
-    "mainImageIndex": 1,
+    "mainImageIndex": 0,
     "tags": [],
     "category": "676909f75adea2037741de0c",
-    "subcategory": "67690d1b5adea2037741de1b",
+    "subcategory": "684a2f0f60211557ee23660f",
     "regularPrice": 42.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#B0A9A3"
+    "themeColor": "#F4CACD"
   },
   {
-    "name": "French Bulldog Pocket Sweatshirt",
+    "name": "Elephant Clock Sweatshirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -80,23 +79,23 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["french-bulldog-pocket"],
+    "collections": ["elephant-clock"],
     "images": [
       {
-        "altText": "French Bulldog Pocket Sweatshirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/53c/53c2415d3e1c8b546e9cd65f65af0483_preview.png"
+        "altText": "Elephant Clock Sweatshirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/5b9/5b94cee0d0c16abdd68d2c6ba93eb0a2_preview.png"
       },
       {
-        "altText": "French Bulldog Pocket Sweatshirt White",
-        "fileURL": "https://files.cdn.printful.com/files/0ab/0abea8b45acb7403cd8493a20aa7470f_preview.png"
+        "altText": "Elephant Clock Sweatshirt White",
+        "fileURL": "https://files.cdn.printful.com/files/140/140985ac3e4196a988f80219d4de0d54_preview.png"
       }
     ],
-    "mainImageIndex": 1,
+    "mainImageIndex": 0,
     "tags": [],
     "category": "67690a545adea2037741de0e",
-    "subcategory": "67690d2d5adea2037741de1d",
+    "subcategory": "684a2edc60211557ee236552",
     "regularPrice": 38.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#B0A9A3"
+    "themeColor": "#F4CACD"
   }
 ]

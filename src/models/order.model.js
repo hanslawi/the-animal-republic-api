@@ -63,6 +63,7 @@ const orderSchema = new mongoose.Schema({
     enum: ["Pending payment", "Processing", "Completed"],
     default: "Pending payment",
   },
+  referral: { type: mongoose.Schema.ObjectId, ref: "Referral" },
 });
 
 const Order = mongoose.model("Order", orderSchema);
