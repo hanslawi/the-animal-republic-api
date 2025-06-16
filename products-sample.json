@@ -1,6 +1,6 @@
 [
   {
-    "name": "Elephant Clock T-Shirt",
+    "name": "Chinese Lion T-Shirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -13,27 +13,27 @@
         "values": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"]
       }
     ],
-    "collections": ["elephant-clock"],
+    "collections": ["chinese-lion"],
     "images": [
       {
-        "altText": "Elephant Clock T-Shirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/ccf/ccfabc9116a15e3371570de09c804cc7_preview.png"
+        "altText": "Chinese Lion T-Shirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/5d9/5d9ce5e861de034dc9adeccd6769d542_preview.png"
       },
       {
-        "altText": "Elephant Clock T-Shirt White",
-        "fileURL": "https://files.cdn.printful.com/files/7dd/7dde305cc9543723dfcb3e90d0526a5f_preview.png"
+        "altText": "Chinese Lion T-Shirt White",
+        "fileURL": "https://files.cdn.printful.com/files/4ac/4ac20dec98ed0871a894357383ace36a_preview.png"
       }
     ],
-    "mainImageIndex": 0,
+    "mainImageIndex": 1,
     "tags": [],
     "category": "676909a85adea2037741de0a",
-    "subcategory": "684a2f2460211557ee236611",
+    "subcategory": "684a27d560211557ee235f2c",
     "regularPrice": 24.99,
-    "themeColor": "#F4CACD",
-     "shippingClass": "678096717ac75f26337a30e7"
+    "themeColor": "#54B8E1",
+    "shippingClass": "678096717ac75f26337a30e7"
   },
   {
-    "name": "Elephant Clock Hoodie",
+    "name": "Chinese Lion Hoodie",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -46,27 +46,27 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["elephant-clock"],
+    "collections": ["chinese-lion"],
     "images": [
       {
-        "altText": "Elephant Clock Hoodie Black",
-        "fileURL": "https://files.cdn.printful.com/files/d65/d655ec8c5120bcfd43c65cd75ed8bb54_preview.png"
+        "altText": "Chinese Lion Hoodie Black",
+        "fileURL": "https://files.cdn.printful.com/files/d35/d358ad05d29e471cfc6e29d38bceb429_preview.png"
       },
       {
-        "altText": "Elephant Clock Hoodie White",
-        "fileURL": "https://files.cdn.printful.com/files/66a/66a5700e01bff515dbb014859df1944f_preview.png"
+        "altText": "Chinese Lion Hoodie White",
+        "fileURL": "https://files.cdn.printful.com/files/a53/a530eaf9121d5a2b98e566f76d622a88_preview.png"
       }
     ],
-    "mainImageIndex": 0,
+    "mainImageIndex": 1,
     "tags": [],
     "category": "676909f75adea2037741de0c",
-    "subcategory": "684a2f0f60211557ee23660f",
+    "subcategory": "684a27be60211557ee235f2a",
     "regularPrice": 42.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#F4CACD"
+    "themeColor": "#54B8E1"
   },
   {
-    "name": "Elephant Clock Sweatshirt",
+    "name": "Chinese Lion Sweatshirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -79,23 +79,23 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["elephant-clock"],
+    "collections": ["chinese-lion"],
     "images": [
       {
-        "altText": "Elephant Clock Sweatshirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/5b9/5b94cee0d0c16abdd68d2c6ba93eb0a2_preview.png"
+        "altText": "Chinese Lion Sweatshirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/85e/85ee70ce57dbd5617ff3c524d57e997d_preview.png"
       },
       {
-        "altText": "Elephant Clock Sweatshirt White",
-        "fileURL": "https://files.cdn.printful.com/files/140/140985ac3e4196a988f80219d4de0d54_preview.png"
+        "altText": "Chinese Lion Sweatshirt White",
+        "fileURL": "https://files.cdn.printful.com/files/dfa/dfad46c91251f775130c058bd93768a6_preview.png"
       }
     ],
-    "mainImageIndex": 0,
+    "mainImageIndex": 1,
     "tags": [],
     "category": "67690a545adea2037741de0e",
-    "subcategory": "684a2edc60211557ee236552",
+    "subcategory": "684a27a560211557ee235f28",
     "regularPrice": 38.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#F4CACD"
+    "themeColor": "#54B8E1"
   }
 ]

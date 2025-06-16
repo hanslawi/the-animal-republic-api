@@ -7,6 +7,7 @@ const referralSchema = new mongoose.Schema({
     required: true,
     validate: validator.isEmail,
   },
+  publicName: { type: String, required: true },
   referralCount: {
     type: Number,
     default: 0,
@@ -20,6 +21,7 @@ const referralSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  dateCreated: { type: Date, default: Date.now() },
 });
 
 const Referral = mongoose.model("Referral", referralSchema);

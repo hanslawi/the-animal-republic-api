@@ -134,8 +134,6 @@ exports.stripeCreateCheckoutSession = async (req, res, next) => {
 
   let order;
 
-  console.log(referralCode, referral);
-
   if (referral) {
     order = await Order.create({
       customerEmailAddress: emailAddress,
@@ -457,15 +455,12 @@ exports.createOrder = async (cart) => {
   let referral;
 
   if (referralCode) {
-    referral = await Order.findOne({ referralCode: referralCode });
+    referral = await Referral.findOne({ referralCode: referralCode });
   }
 
   let order;
 
-  console.log(referralCode, referral);
-
   if (referral) {
-    console.log("Created order with referral.");
     order = await Order.create({
       customerEmailAddress: emailAddress,
       customerCountry: country.code,
@@ -485,7 +480,6 @@ exports.createOrder = async (cart) => {
       referral: referral,
     });
   } else {
-    console.log("Created order with no referral.");
     order = await Order.create({
       customerEmailAddress: emailAddress,
       customerCountry: country.code,

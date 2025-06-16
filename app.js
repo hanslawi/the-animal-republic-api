@@ -13,6 +13,7 @@ const shippingRouter = require("./src/routes/shipping.routes");
 const taxRouter = require("./src/routes/tax.routes");
 const paymentRouter = require("./src/routes/payment.routes");
 const orderRouter = require("./src/routes/order.routes");
+const referralRouter = require("./src/routes/referral.routes");
 
 // init express
 const app = express();
@@ -38,6 +39,7 @@ app.use("/api/ui", uiRouter);
 app.use("/api/shipping", shippingRouter);
 app.use("/api/tax", taxRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/referrals", referralRouter);
 app.get("/", (req, res) => {
   res.status(200);
 });

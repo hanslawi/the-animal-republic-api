@@ -147,7 +147,9 @@ exports.getCatalogDataOfCategory = async (req, res, next) => {
     const subcategories = await SubCategory.find({
       category: category.id,
     })
-      .select("name slug bannerColor bannerImageFileName bannerBackgorundFileName")
+      .select(
+        "name slug bannerColor bannerImageFileName bannerBackgorundFileName"
+      )
       .sort({ _id: 1 });
 
     catalogData.category = {
@@ -311,9 +313,18 @@ exports.getCartData = async (req, res, next) => {
         const product = await Product.findById(item.id).select(
           "_id name slug themeColor"
         );
+
+        if (!product) {
+          return 1;
+        }
+
         const productVariant = await ProductVariant.findById(
           item.productVariant._id
         ).select("product attributes regularPrice images");
+
+        if (!productVariant) {
+          return 1;
+        }
 
         cartData.items = [
           ...cartData.items,
