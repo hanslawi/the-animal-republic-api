@@ -47,6 +47,24 @@ exports.getSearchNavigationData = async (req, res, next) => {
           )
           .sort({ _id: 1 });
 
+        const orderedSubcategories = [
+          subcategories[0],
+          subcategories[1],
+          subcategories[14],
+          subcategories[2],
+          subcategories[3],
+          subcategories[4],
+          subcategories[5],
+          subcategories[6],
+          subcategories[7],
+          subcategories[8],
+          subcategories[9],
+          subcategories[10],
+          subcategories[11],
+          subcategories[12],
+          subcategories[13],
+        ];
+
         // get featured PROUDCTS of current CATEGORY
         const featuredProducts = await Product.find({
           category: category.id,
@@ -55,7 +73,7 @@ exports.getSearchNavigationData = async (req, res, next) => {
 
         searchNavigationData.categories[index] = {
           ...searchNavigationData.categories[index],
-          subcategories: subcategories,
+          subcategories: orderedSubcategories,
           featuredProducts: featuredProducts,
         };
 
@@ -139,7 +157,7 @@ exports.getCatalogDataOfCategory = async (req, res, next) => {
     const products = await Product.find({ category: category.id })
       .skip((page - 1) * limit)
       .limit(limit)
-      .sort("field -dateCreated");
+      .sort("-itemsSold -dateCreated");
 
     // init catalogData object
     const catalogData = {};
@@ -152,13 +170,31 @@ exports.getCatalogDataOfCategory = async (req, res, next) => {
       )
       .sort({ _id: 1 });
 
+    const orderedSubcategories = [
+      subcategories[0],
+      subcategories[1],
+      subcategories[14],
+      subcategories[2],
+      subcategories[3],
+      subcategories[4],
+      subcategories[5],
+      subcategories[6],
+      subcategories[7],
+      subcategories[8],
+      subcategories[9],
+      subcategories[10],
+      subcategories[11],
+      subcategories[12],
+      subcategories[13],
+    ];
+
     catalogData.category = {
       id: category.id,
       name: category.name,
       slug: category.slug,
       bannerImagesFileName: category.bannerImagesFileName,
       bannerColor: category.bannerColor,
-      subcategories: subcategories,
+      subcategories: orderedSubcategories,
       products: products,
       totalPages: pages,
     };
@@ -209,7 +245,7 @@ exports.getCatalogDataOfSubcategory = async (req, res, next) => {
     })
       .skip((page - 1) * limit)
       .limit(limit)
-      .sort("field -dateCreated");
+      .sort("-itemsSold -dateCreated");
 
     // init catalogData object
     const catalogData = {};
@@ -222,13 +258,31 @@ exports.getCatalogDataOfSubcategory = async (req, res, next) => {
       )
       .sort({ _id: 1 });
 
+    const orderedSubcategories = [
+      subcategories[0],
+      subcategories[1],
+      subcategories[14],
+      subcategories[2],
+      subcategories[3],
+      subcategories[4],
+      subcategories[5],
+      subcategories[6],
+      subcategories[7],
+      subcategories[8],
+      subcategories[9],
+      subcategories[10],
+      subcategories[11],
+      subcategories[12],
+      subcategories[13],
+    ];
+
     catalogData.category = {
       id: category.id,
       name: category.name,
       slug: category.slug,
       bannerImagesFileName: category.bannerImagesFileName,
       bannerColor: category.bannerColor,
-      subcategories: subcategories,
+      subcategories: orderedSubcategories,
       subcategory: subcategory,
       products: products,
       totalPages: pages,
