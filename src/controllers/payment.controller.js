@@ -368,7 +368,9 @@ exports.createOrder = async (cart) => {
   const { _id: countryId } = await Country.findOne({ code: country.code });
 
   // get shipping fees of country
-  const shippingFees = await ShippingFee.find({ country: countryId });
+  const shippingFees = await ShippingFee.find({
+    country: "67808b3e48655536f1b7b0ca",
+  });
 
   let shippingFeeAccumulator = 0;
   let previousShippingClass;
