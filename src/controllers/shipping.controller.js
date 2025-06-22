@@ -120,7 +120,8 @@ exports.updateShippingFee = async (req, res, next) => {
     );
 
     // if SHIPPING FEE is not found, throw AppError to next middleware
-    if (!updatedShippingFee) return next(new AppError("Shipping Fee not found", 404));
+    if (!updatedShippingFee)
+      return next(new AppError("Shipping Fee not found", 404));
 
     // send JSON response with updated ShippingFee
     res
@@ -135,7 +136,6 @@ exports.calculateShippingFee = async (req, res, next) => {
   try {
     // get items from cart
     const { items } = req.body;
-
 
     const itemsWithShippingClass = await Promise.all(
       items.map(async (item) => {
@@ -159,7 +159,9 @@ exports.calculateShippingFee = async (req, res, next) => {
 
     // get shipping fees of country
     // const shippingFees = await ShippingFee.find({ country: countryId });
-    const shippingFees = await ShippingFee.find({ country: '67808b3e48655536f1b7b0ca' });
+    const shippingFees = await ShippingFee.find({
+      country: "67808b3e48655536f1b7b0ca",
+    });
 
     let shippingFeeAccumulator = 0;
     let previousShippingClass;
