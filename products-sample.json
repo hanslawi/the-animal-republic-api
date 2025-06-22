@@ -1,6 +1,6 @@
 [
   {
-    "name": "Chinese Lion T-Shirt",
+    "name": "Unicorn Mullet T-Shirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -13,27 +13,27 @@
         "values": ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"]
       }
     ],
-    "collections": ["chinese-lion"],
+    "collections": ["unicorn-mullet"],
     "images": [
       {
-        "altText": "Chinese Lion T-Shirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/5d9/5d9ce5e861de034dc9adeccd6769d542_preview.png"
+        "altText": "Unicorn Mullet T-Shirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/b2b/b2b9d67901c3821e0788af01d3790ff9_preview.png"
       },
       {
-        "altText": "Chinese Lion T-Shirt White",
-        "fileURL": "https://files.cdn.printful.com/files/4ac/4ac20dec98ed0871a894357383ace36a_preview.png"
+        "altText": "Unicorn Mullet T-Shirt White",
+        "fileURL": "https://files.cdn.printful.com/files/071/07140946c495cb7f74b15a113aa46d88_preview.png"
       }
     ],
     "mainImageIndex": 1,
     "tags": [],
     "category": "676909a85adea2037741de0a",
-    "subcategory": "684a27d560211557ee235f2c",
+    "subcategory": "684a348bf665ae900d8a73af",
     "regularPrice": 24.99,
-    "themeColor": "#54B8E1",
+    "themeColor": "#F3A671",
     "shippingClass": "678096717ac75f26337a30e7"
   },
   {
-    "name": "Chinese Lion Hoodie",
+    "name": "Unicorn Mullet Hoodie",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -46,27 +46,27 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["chinese-lion"],
+    "collections": ["unicorn-mullet"],
     "images": [
       {
-        "altText": "Chinese Lion Hoodie Black",
-        "fileURL": "https://files.cdn.printful.com/files/d35/d358ad05d29e471cfc6e29d38bceb429_preview.png"
+        "altText": "Unicorn Mullet Hoodie Black",
+        "fileURL": "https://files.cdn.printful.com/files/729/72934191d974040ac39078a236a584e0_preview.png"
       },
       {
-        "altText": "Chinese Lion Hoodie White",
-        "fileURL": "https://files.cdn.printful.com/files/a53/a530eaf9121d5a2b98e566f76d622a88_preview.png"
+        "altText": "Unicorn Mullet Hoodie White",
+        "fileURL": "https://files.cdn.printful.com/files/bc2/bc271e1447c7a99eb6a1aa6e452d7263_preview.png"
       }
     ],
     "mainImageIndex": 1,
     "tags": [],
     "category": "676909f75adea2037741de0c",
-    "subcategory": "684a27be60211557ee235f2a",
+    "subcategory": "684a3498f665ae900d8a73b1",
     "regularPrice": 42.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#54B8E1"
+    "themeColor": "#F3A671"
   },
   {
-    "name": "Chinese Lion Sweatshirt",
+    "name": "Unicorn Mullet Sweatshirt",
     "type": "variable",
     "SKU": "",
     "attributes": [
@@ -79,23 +79,23 @@
         "values": ["S", "M", "L", "XL", "2XL", "3XL"]
       }
     ],
-    "collections": ["chinese-lion"],
+    "collections": ["unicorn-mullet"],
     "images": [
       {
-        "altText": "Chinese Lion Sweatshirt Black",
-        "fileURL": "https://files.cdn.printful.com/files/85e/85ee70ce57dbd5617ff3c524d57e997d_preview.png"
+        "altText": "Unicorn Mullet Sweatshirt Black",
+        "fileURL": "https://files.cdn.printful.com/files/9e7/9e75899dbd2fc6de0ec6e6afcc1def17_preview.png"
       },
       {
-        "altText": "Chinese Lion Sweatshirt White",
-        "fileURL": "https://files.cdn.printful.com/files/dfa/dfad46c91251f775130c058bd93768a6_preview.png"
+        "altText": "Unicorn Mullet Sweatshirt White",
+        "fileURL": "https://files.cdn.printful.com/files/118/118a94ee8a682c153fed1a06d45ad406_preview.png"
       }
     ],
     "mainImageIndex": 1,
     "tags": [],
     "category": "67690a545adea2037741de0e",
-    "subcategory": "684a27a560211557ee235f28",
+    "subcategory": "684a34d9f665ae900d8a73b4",
     "regularPrice": 38.99,
     "shippingClass": "678096917ac75f26337a30ea",
-    "themeColor": "#54B8E1"
+    "themeColor": "#F3A671"
   }
 ]

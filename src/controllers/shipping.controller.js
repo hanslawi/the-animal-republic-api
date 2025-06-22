@@ -19,7 +19,7 @@ exports.addCountry = async (req, res, next) => {
 
 exports.getCountries = async (req, res, next) => {
   try {
-    const countries = await Country.find({}).select("name code");
+    const countries = await Country.find({});
 
     res.status(200).json({
       status: "SUCCESS",
@@ -158,7 +158,8 @@ exports.calculateShippingFee = async (req, res, next) => {
     const { _id: countryId } = await Country.findOne({ code: country.code });
 
     // get shipping fees of country
-    const shippingFees = await ShippingFee.find({ country: countryId });
+    // const shippingFees = await ShippingFee.find({ country: countryId });
+    const shippingFees = await ShippingFee.find({ country: '67808b3e48655536f1b7b0ca' });
 
     let shippingFeeAccumulator = 0;
     let previousShippingClass;
